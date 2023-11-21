@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 public interface AccountRepository extends CrudRepository<AccountEntity, Long> {
 
     AccountEntity findByEmailLikeAndStatusLike(String email,
-            UserStatus status);
+                                               UserStatus status);
+    boolean existsByEmail(String email);
     
 }

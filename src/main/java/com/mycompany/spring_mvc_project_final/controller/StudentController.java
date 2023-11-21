@@ -51,12 +51,14 @@ public class StudentController {
 	}
 	@RequestMapping(value = "/insertImage", method = RequestMethod.POST,
 			consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
-			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+			produces = {MediaType.APPLICATION_JSON_UTF8_VALUE,"text/plain;charset=UTF-8"})
 	public ModelAndView save(@RequestParam("name") String name, @RequestParam("age") Integer age,
 							 @RequestPart("photo") MultipartFile photo) {
 		try {
 			StudentEntity s = new StudentEntity();
+			//String decodedText = URLDecoder.decode(name, "UTF-8");
 			s.setName(name);
+
 			s.setAge(age);
 			s.setPhoto(photo.getBytes());
 			studentRepository.save(s);
@@ -67,6 +69,7 @@ public class StudentController {
 			return new ModelAndView("student/index", "msg", "Error: " + e.getMessage());
 		}
 	}
+
 
 	@RequestMapping(value = "/fetch")
 	public ModelAndView listStudent(ModelAndView model) throws IOException {

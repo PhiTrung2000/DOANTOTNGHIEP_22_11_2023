@@ -5,8 +5,9 @@
  */
 package com.mycompany.spring_mvc_project_final.repository;
 
-import com.mycompany.spring_mvc_project_final.entities.RoleEntity;
 import java.util.Set;
+
+import com.mycompany.spring_mvc_project_final.entities.RoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

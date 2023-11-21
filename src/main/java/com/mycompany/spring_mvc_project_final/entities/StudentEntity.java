@@ -1,8 +1,5 @@
 package com.mycompany.spring_mvc_project_final.entities;
 
-import com.mysql.cj.jdbc.Blob;
-import org.springframework.web.multipart.MultipartFile;
-
 import javax.persistence.*;
 
 @Entity

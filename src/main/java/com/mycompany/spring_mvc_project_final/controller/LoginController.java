@@ -22,7 +22,7 @@ public class LoginController {
     public String loginPage(Model model, @RequestParam(value = "error", required = false) boolean error) {
 
         if (error) {
-            model.addAttribute("message", "Login Fail!!!");
+            model.addAttribute("message", "Tên đăng nhập hoặc mật khẩu không đúng!!!");
         }
         return "login";
     }
@@ -55,7 +55,15 @@ public class LoginController {
     }
 
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
-    public String welcomePage(Model model) {
-        return "home";
+    public String welcomePage(Model model, HttpSession session) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = principal.toString();
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+            session.setAttribute("username", username);
+
+        }
+        return "index";
     }
 }
