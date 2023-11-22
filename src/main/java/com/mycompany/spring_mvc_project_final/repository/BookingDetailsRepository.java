@@ -32,5 +32,6 @@ public interface BookingDetailsRepository extends JpaRepository<BookingDetailsEn
             @Param("categoryId") Integer categoryId,
             @Param("checkinDate") Date checkinDate,
             @Param("checkoutDate") Date checkoutDate);
+
 }
 
