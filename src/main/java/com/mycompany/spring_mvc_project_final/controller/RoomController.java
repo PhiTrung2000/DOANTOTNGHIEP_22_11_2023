@@ -53,4 +53,17 @@ public class RoomController {
         return "detailfamily";
     }
 
+    @RequestMapping(value = {"/search/Suite"}, method = RequestMethod.GET)
+    public String detailsuite(Model model, HttpSession session) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = principal.toString();
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+            session.setAttribute("username", username);
+
+        }
+        return "detailsuite";
+    }
+
 }

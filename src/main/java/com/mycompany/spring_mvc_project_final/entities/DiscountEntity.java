@@ -15,18 +15,18 @@ public class DiscountEntity {
     private int id;
 
     @Column(name = "name")
-    private int name;
+    private String name;
 
     @Column(name = "code")
-    private int code;
+    private String code;
+
+    @Column(name = "discountAmount")
+    private double discountAmount;
 
     @Column(name = "expirationDate")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date expirationDate;
-
-    @OneToOne(mappedBy = "discount")
-    private BookingEntity booking;
 
     public DiscountEntity(){
     }
@@ -40,19 +40,19 @@ public class DiscountEntity {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -64,11 +64,12 @@ public class DiscountEntity {
         this.expirationDate = expirationDate;
     }
 
-    public BookingEntity getBooking() {
-        return booking;
+    public double getDiscountAmount() {
+        return discountAmount;
     }
 
-    public void setBooking(BookingEntity booking) {
-        this.booking = booking;
+    public void setDiscountAmount(double discountAmount) {
+        this.discountAmount = discountAmount;
     }
+
 }

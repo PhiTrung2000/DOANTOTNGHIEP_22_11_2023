@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/resources/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/resources/css/jquery.timepicker.css">
     <link rel="stylesheet" href="/resources/css/fancybox.min.css">
-    
+
     <link rel="stylesheet" href="/resources/fonts/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="/resources/fonts/fontawesome/css/font-awesome.min.css">
 
@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="/resources/css/style.css">
   </head>
   <body>
-    
+
     <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
@@ -70,7 +70,7 @@
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade">
-            <h1 class="heading mb-3">Xác Nhận Đặt Phòng</h1>
+            <h1 class="heading mb-3">Thanh Toán</h1>
             <ul class="custom-breadcrumbs mb-4">
               <li><a href="index.jsp">Home</a></li>
               <li>&bullet;</li>
@@ -88,79 +88,71 @@
     </section>
     <!-- END section -->
 
-    <section class="section contact-section" id="next">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-            
-            <form action="#" method="post" class="bg-white p-md-5 p-4 mb-5 border">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <label class="text-black font-weight-bold" for="name">Name</label>
-                  <input type="text" id="name" class="form-control " value="${name}" readonly style="background-color: white;border: 1px solid green;">
-                </div>
-                <div class="col-md-6 form-group">
-                  <label class="text-black font-weight-bold" for="phone">Phone</label>
-                  <input type="text" id="phone" class="form-control " value="${phone}" readonly style="background-color: white;border: 1px solid green;">
-                </div>
-              </div>
-          
-              <div class="row">
-                <div class="col-md-12 form-group">
-                  <label class="text-black font-weight-bold" for="email">Email</label>
-                  <input type="email" id="email" class="form-control " value=${username} readonly style="background-color: white;border: 1px solid green;">
-                </div>
-              </div>
+   <section class="section contact-section" id="next">
+       <div class="container">
+           <div class="row justify-content-center">
+               <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="100">
+                   <h2 class="section-heading">Thông tin thanh toán</h2>
+                   <p class="section-subheading">Vui lòng điền thông tin thanh toán của bạn</p>
+               </div>
+           </div>
+           <div class="row justify-content-center">
+               <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                   <form id="availabilityForm" action="/user/payment" method="post">
+                      <div class="form-group">
+                          <label for="paymentType">Loại Thanh Toán:</label>
+                          <select class="form-control" id="paymentType" name="paymentType">
+                               <option value="Thẻ tín dụng" ${paymentType == 'Thẻ tín dụng' ? 'selected' : ''}>Thẻ tín dụng</option>
+                                  <option value="Thẻ ghi nợ" ${paymentType == 'Thẻ ghi nợ' ? 'selected' : ''}>Thẻ ghi nợ</option>
+                                  <option value="Thẻ ngân hàng" ${paymentType == 'Thẻ ngân hàng' ? 'selected' : ''}>Thẻ ngân hàng</option>
+                          </select>
+                      </div>
 
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <label class="text-black font-weight-bold" for="checkin_date">Date Check In</label>
-                  <input type="text" id="myDateInput" class="form-control" readonly style="background-color: white;border: 1px solid green;">
-                </div>
-                <div class="col-md-6 form-group">
-                  <label class="text-black font-weight-bold" for="checkout_date">Date Check Out</label>
-                  <input type="text" id="myDateOutput" class="form-control" readonly style="background-color: white;border: 1px solid green;">
-                </div>
-              </div>
+                       <div class="form-group">
+                           <label for="bankName">Tên Ngân Hàng:</label>
+                           <select class="form-control" id="bank" name="bank" value="${bank}">
+                                   <option value="Agribank" ${bank == 'Agribank' ? 'selected' : ''}>Agribank</option>
+                                   <option value="Viettinbank" ${bank == 'Viettinbank' ? 'selected' : ''}>Viettinbank</option>
+                                   <option value="Techcombank" ${bank == 'Techcombank' ? 'selected' : ''}>Techcombank</option>
+                                   <option value="Sacombank" ${bank == 'Sacombank' ? 'selected' : ''}>Sacombank</option>
+                           </select>
+                       </div>
 
-              <div class="row">
-                <div class="col-md-6 form-group">
-                    <label for="adults" class="font-weight-bold text-black">Adults</label>
-                    <div class="field-icon-wrap">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <input type="text" name="adults" id="adults" class="form-control" placeholder="Enter number of adults" readonly style="background-color: white;border: 1px solid green;">
-                    </div>
-                </div>
-                <div class="col-md-6 form-group">
-                    <label for="adults" class="font-weight-bold text-black">Children</label>
-                    <div class="field-icon-wrap">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <input type="text" name="children" id="children" class="form-control" placeholder="Enter number of adults" readonly style="background-color: white;border: 1px solid green;">
-                    </div>
-                </div>
-              </div>
+                       <div class="form-group">
+                           <label for="accountNumber">Số Tài Khoản:</label>
+                           <input type="text" class="form-control" id="numberCard" name="numberCard" value="${numberCard}"
+                               placeholder="Nhập số tài khoản" >
+                       </div>
 
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="button" value="Xác Nhận Đặt Phòng" class="btn btn-primary text-white py-3 px-5 font-weight-bold" onclick="redirectToPayment()">
-                </div>
-              </div>
-            </form>
+                       <div class="form-group">
+                           <label for="accountHolder">Chủ Tài Khoản:</label>
+                           <input type="text" class="form-control" id="name" name="name" value="${name}" readonly>
+                       </div>
 
-          </div>
-          <div class="col-md-5" data-aos="fade-up" data-aos-delay="200">
-            <div class="row">
-              <div class="col-md-10 ml-auto contact-info">
-                <p><span class="d-block">Loại Phòng:</span> <span class="text-black"> ${categoryName} </span></p>
-                <p><span class="d-block">Phòng:</span> <span class="text-black" id="selectedRoom"></span></p>
-                <p><span class="d-block">Giá USD:</span> <span id="formattedPriceUSD" class="text-black"> ${price} USD </span></p>
-                <p><span class="d-block">Giá VND:</span> <span id="formattedPriceVND" class="text-black"> ${priceVND} VND </span></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+                       <div class="form-group">
+                           <label for="amount">Số Tiền Thanh Toán:</label>
+                           <input type="text" class="form-control" id="amount" name="amount" value="${formattedPrice}" readonly>
+                       </div>
+
+                       <div class="form-group">
+                           <label for="promoCode">Mã Khuyến Mãi:</label>
+                           <input type="text" class="form-control" id="code" name="code" placeholder="Nếu có" value=${code}>
+                       </div>
+                       <p style="color: red;">${errorMessage}</p>
+                       <!-- Đặt nút bên trong thẻ form -->
+                       <input type="submit" id="checkInfoButton" style="background-color: orange; color: white; padding: 10px 20px; border-radius: 40px; border: none; cursor: pointer;" value="Kiểm tra thông tin" onmouseover="this.style.backgroundColor='#ff8c00'" onmouseout="this.style.backgroundColor='orange'">
+                   </form>
+                   <!-- Form cho việc thanh toán -->
+                   <form id="paymentForm" action="/user/processPayment" method="post" style="display: none;">
+                       <!-- Các trường dữ liệu khác cho thanh toán -->
+
+                       <!-- Nút Thanh toán -->
+                       <input type="submit" style="background-color: green; color: white; padding: 10px 20px; border-radius: 40px; border: none; cursor: pointer;" value="Thanh toán">
+                   </form>
+               </div>
+           </div>
+       </div>
+   </section>
 
     <section class="section testimonial-section bg-light">
       <div class="container">
@@ -171,7 +163,7 @@
         </div>
         <div class="row">
           <div class="js-carousel-2 owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
-            
+
             <div class="testimonial text-center slider-item">
               <div class="author-image mb-3">
                 <img src="/resources/images/person_1.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
@@ -181,7 +173,7 @@
                 <p>&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
               </blockquote>
               <p><em>&mdash; Jean Smith</em></p>
-            </div> 
+            </div>
 
             <div class="testimonial text-center slider-item">
               <div class="author-image mb-3">
@@ -214,7 +206,7 @@
                 <p>&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
               </blockquote>
               <p><em>&mdash; Jean Smith</em></p>
-            </div> 
+            </div>
 
             <div class="testimonial text-center slider-item">
               <div class="author-image mb-3">
@@ -244,8 +236,8 @@
       </div>
     </section>
 
-    
-    
+
+
     <section class="section bg-image overlay" style="background-image: url('/resources/images/hero_4.jpg');">
         <div class="container" >
           <div class="row align-items-center">
@@ -300,7 +292,7 @@
             Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
           </p>
-            
+
           <p class="col-md-6 text-right social">
             <a href="#"><span class="fa fa-tripadvisor"></span></a>
             <a href="#"><span class="fa fa-facebook"></span></a>
@@ -311,7 +303,7 @@
         </div>
       </div>
     </footer>
-    
+
     <script src="/resources/js/jquery-3.3.1.min.js"></script>
     <script src="/resources/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="/resources/js/popper.min.js"></script>
@@ -319,14 +311,14 @@
     <script src="/resources/js/owl.carousel.min.js"></script>
     <script src="/resources/js/jquery.stellar.min.js"></script>
     <script src="/resources/js/jquery.fancybox.min.js"></script>
-    
-    
+
+
     <script src="/resources/js/aos.js"></script>
-    
+
     <script src="/resources/js/bootstrap-datepicker.js"></script>
     <script src="/resources/js/jquery.timepicker.min.js"></script>
 
-    
+
 
     <script src="/resources/js/main.js"></script>
 
@@ -341,13 +333,18 @@
                 var checkoutDate = document.getElementById("myDateOutput").value;
                 var adults = document.getElementById("adults").value;
                 var children = document.getElementById("children").value;
+                var paymentType = document.getElementById("paymentType").value;
+                var bank = document.getElementById("bank").value;
+                var numberCard = document.getElementById("numberCard").value;
 
                 // Lưu trữ dữ liệu vào sessionStorage (hoặc có thể sử dụng localStorage)
                 sessionStorage.setItem("checkin_date", checkinDate);
                 sessionStorage.setItem("checkout_date", checkoutDate);
                 sessionStorage.setItem("adults", adults);
                 sessionStorage.setItem("children", children);
-
+                sessionStorage.setItem("paymentType", paymentType);
+                sessionStorage.setItem("bank", bank);
+                sessionStorage.setItem("numberCard", numberCard);
             });
         });
 
@@ -360,12 +357,27 @@
             var toDate = sessionStorage.getItem("checkout_date");
             var adults = sessionStorage.getItem("adults");
             var children = sessionStorage.getItem("children");
+            var paymentType = document.getElementById("paymentType").value;
+            var bank = document.getElementById("bank").value;
+            var numberCard = document.getElementById("numberCard").value;
+
+             // Log các giá trị để kiểm tra
+                console.log("fromDate:", fromDate);
+                console.log("toDate:", toDate);
+                console.log("adults:", adults);
+                console.log("children:", children);
+                console.log("paymentType:", paymentType);
+                console.log("bank:", bank);
+                console.log("numberCard:", numberCard);
 
             // Sử dụng giá trị làm gì đó (ví dụ: điền giá trị vào các trường form trên trang checkAvailability)
             document.getElementById("myDateInput").value = fromDate;
             document.getElementById("myDateOutput").value = toDate;
             document.getElementById("adults").value = adults;
             document.getElementById("children").value = children;
+            document.getElementById("paymentType").value = paymentType;
+            document.getElementById("bank").value = bank;
+            document.getElementById("numberCard").value = numberCard;
 
 
             // Xóa dữ liệu khỏi sessionStorage nếu cần thiết
@@ -399,26 +411,58 @@
     </script>
 
     <script>
-        // Lấy giá trị từ model
-        var priceUSD = ${price}; // Giá trị mặc định nếu không có từ server
+        document.addEventListener("DOMContentLoaded", function () {
+            // Lấy giá trị từ model
+            var priceUSD = ${price}; // Giá trị mặc định nếu không có từ server
 
-        // Kiểm tra xem có dạng .0 không
-        var formattedPrice = priceUSD % 1 === 0 ? priceUSD.toFixed(0) : priceUSD;
+            // Kiểm tra xem có dạng .0 không
+            var formattedPrice = priceUSD % 1 === 0 ? priceUSD.toFixed(0) : priceUSD;
 
-        // Định dạng số với dấu chấm phân cách hàng nghìn và không có số lẻ
-        formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(formattedPrice);
+            // Định dạng số với dấu chấm phân cách hàng nghìn và không có số lẻ
+            formattedPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(formattedPrice);
 
-        // Hiển thị giá trị đã định dạng trong thẻ span
-        document.getElementById('formattedPriceUSD').innerText = formattedPrice;
+             // Loại bỏ dấu $ ở đầu giá trị
+            formattedPrice = formattedPrice.substring(1);
+
+            // Thay thế dấu , bằng dấu .
+             formattedPrice = formattedPrice.replace(/,/g, '.');
+
+             // Thêm đơn vị VNĐ đằng trước số tiền
+             formattedPrice = "VND " + formattedPrice;
+
+            // Hiển thị giá trị đã định dạng trong trường input
+            document.getElementById('amount').value = formattedPrice;
+        });
     </script>
 
     <script>
-        function redirectToPayment() {
-            // Chuyển hướng người dùng đến trang /user/payment
-            window.location.href = '/user/payment';
-        }
-    </script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Lấy giá trị từ model (hoặc từ sessionStorage, tùy vào cách bạn lưu trữ giá trị)
+            var nameValue = "${name}"; // Giá trị mặc định nếu không có từ server
 
+            // Nếu có giá trị name, hiển thị nút Thanh toán
+            if (nameValue.trim() !== "") {
+                document.getElementById("paymentForm").style.display = "block";
+                document.getElementById("checkInfoButton").style.display = "none";
+
+                // Lấy các phần tử input và select cần chuyển sang dạng chỉ đọc
+                var paymentTypeInput = document.getElementById('paymentType');
+                var bankInput = document.getElementById('bank');
+                var numberCardInput = document.getElementById('numberCard');
+                var nameInput = document.getElementById('name');
+                var amountInput = document.getElementById('amount');
+                var codeInput = document.getElementById('code');
+
+                // Chuyển sang dạng chỉ đọc
+                paymentTypeInput.setAttribute('disabled', 'disabled');
+                bankInput.setAttribute('disabled', 'disabled');
+                numberCardInput.setAttribute('readonly', 'readonly');
+                nameInput.setAttribute('readonly', 'readonly');
+                amountInput.setAttribute('readonly', 'readonly');
+                codeInput.setAttribute('readonly', 'readonly');
+            }
+        });
+    </script>
 
   </body>
 </html>

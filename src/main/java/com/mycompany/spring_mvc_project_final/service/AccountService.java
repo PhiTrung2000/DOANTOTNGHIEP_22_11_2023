@@ -22,4 +22,7 @@ public class AccountService {
     public AccountEntity getAccountByEmail(String email) {
         return accountRepository.findByEmailLikeAndStatusLike(email, UserStatus.ACTIVE);
     }
+    public AccountEntity findByEmail(String email) {
+        return accountRepository.findByEmail(email);
+    }
 }

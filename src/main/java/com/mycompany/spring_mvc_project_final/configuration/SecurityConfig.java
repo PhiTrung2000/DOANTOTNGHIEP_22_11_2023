@@ -64,6 +64,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and().logout().logoutUrl("/logout")
-                .logoutSuccessUrl("/home").deleteCookies("JSESSIONID");
+                .logoutSuccessUrl("/").deleteCookies("JSESSIONID");
     }
 }

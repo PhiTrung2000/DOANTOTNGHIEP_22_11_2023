@@ -19,5 +19,9 @@ public class CategoryService {
     public List<CategoryEntity> getAllCategories() {
         return categoryRepository.findAll();
     }
+
+    public CategoryEntity findByName(String categoryName) {
+        return categoryRepository.findByName(categoryName);
+    }
 }
 

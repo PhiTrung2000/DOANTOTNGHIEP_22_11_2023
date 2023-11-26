@@ -189,7 +189,7 @@
                 <td class="text-center">
                   <c:choose>
                     <c:when test="${room.status eq 'Available'}">
-                      <button class="btn btn-success" onclick="bookRoom('${room.name}')">Đặt phòng</button>
+                      <button class="btn btn-success" onclick="bookRoom('${room.name}', '/user/infomation-${categoryName}')">Đặt phòng</button>
                     </c:when>
                     <c:otherwise>
                       <button class="btn btn-secondary" disabled>Hết phòng</button>
@@ -352,11 +352,11 @@
 </script>
 
 <script>
-    function bookRoom(roomName) {
+    function bookRoom(roomName, destinationUrl) {
         // Set giá trị phòng được chọn vào input hidden
-        document.getElementById('selectedRoom').value = roomName;
-        // Submit form để gửi yêu cầu đặt phòng
-        document.getElementById('bookingForm').submit();
+        // document.getElementById('selectedRoom').value = roomName;
+         sessionStorage.setItem('selectedRoom', roomName);
+         window.open(destinationUrl, '_blank');
     }
 </script>
   </body>

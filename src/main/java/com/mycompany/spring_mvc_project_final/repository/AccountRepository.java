@@ -7,7 +7,9 @@ package com.mycompany.spring_mvc_project_final.repository;
 
 import com.mycompany.spring_mvc_project_final.entities.AccountEntity;
 import com.mycompany.spring_mvc_project_final.enums.UserStatus;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -16,5 +18,8 @@ public interface AccountRepository extends CrudRepository<AccountEntity, Long> {
     AccountEntity findByEmailLikeAndStatusLike(String email,
                                                UserStatus status);
     boolean existsByEmail(String email);
+    AccountEntity findByEmail(String email);
+    @Query("SELECT a.id FROM AccountEntity a WHERE a.email = :email")
+    Long findAccountIdByEmail(@Param("email") String email);
     
 }
