@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface BookingDetailsRepository extends JpaRepository<BookingDetailsEntity, Long> {
+    List<BookingDetailsEntity> findByBooking_Id(int bookingId);
 
     @Query("SELECT bd FROM BookingDetailsEntity bd " +
             "WHERE bd.category.id = :categoryId " +

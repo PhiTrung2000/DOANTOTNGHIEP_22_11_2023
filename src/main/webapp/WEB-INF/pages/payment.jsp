@@ -139,14 +139,14 @@
                            <input type="text" class="form-control" id="code" name="code" placeholder="Nếu có" value=${code}>
                        </div>
                        <p style="color: red;">${errorMessage}</p>
+                       <p style="color: green;">${success}</p>
+                       <p style="color: red;">${fail}</p>
                        <!-- Đặt nút bên trong thẻ form -->
                        <input type="submit" id="checkInfoButton" style="background-color: orange; color: white; padding: 10px 20px; border-radius: 40px; border: none; cursor: pointer;" value="Kiểm tra thông tin" onmouseover="this.style.backgroundColor='#ff8c00'" onmouseout="this.style.backgroundColor='orange'">
                    </form>
                    <!-- Form cho việc thanh toán -->
                    <form id="paymentForm" action="/user/processPayment" method="post" style="display: none;">
-                       <!-- Các trường dữ liệu khác cho thanh toán -->
-
-                       <!-- Nút Thanh toán -->
+                       <input type="text" style="display: none;" class="form-control" id="code" name="code" placeholder="Nếu có" value=${code} >
                        <input type="submit" style="background-color: green; color: white; padding: 10px 20px; border-radius: 40px; border: none; cursor: pointer;" value="Thanh toán">
                    </form>
                </div>

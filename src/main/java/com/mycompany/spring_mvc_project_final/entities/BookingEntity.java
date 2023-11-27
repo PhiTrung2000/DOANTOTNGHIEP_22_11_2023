@@ -14,6 +14,10 @@ public class BookingEntity {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "bookingdate")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date bookingdate;
 
     @Column(name = "status")
     private String status;
@@ -27,6 +31,9 @@ public class BookingEntity {
 
     @OneToMany(mappedBy = "booking",fetch = FetchType.LAZY)
     private List<PaymentEntity> paymentEntityList;
+
+    @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY)
+    private List<BookingDetailsEntity> bookingDetailsEntityList;
 
     @OneToOne(cascade = {CascadeType.ALL})
     @PrimaryKeyJoinColumn
@@ -83,6 +90,22 @@ public class BookingEntity {
 
     public void setPaymentEntityList(List<PaymentEntity> paymentEntityList) {
         this.paymentEntityList = paymentEntityList;
+    }
+
+    public Date getBookingdate() {
+        return bookingdate;
+    }
+
+    public void setBookingdate(Date bookingdate) {
+        this.bookingdate = bookingdate;
+    }
+
+    public List<BookingDetailsEntity> getBookingDetailsEntityList() {
+        return bookingDetailsEntityList;
+    }
+
+    public void setBookingDetailsEntityList(List<BookingDetailsEntity> bookingDetailsEntityList) {
+        this.bookingDetailsEntityList = bookingDetailsEntityList;
     }
 
 }
