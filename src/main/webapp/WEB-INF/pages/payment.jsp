@@ -146,6 +146,10 @@
                    </form>
                    <!-- Form cho việc thanh toán -->
                    <form id="paymentForm" action="/user/processPayment" method="post" style="display: none;">
+                       <input type="hidden" name="checkinDate" id="myDateInput">
+                       <input type="hidden" name="checkoutDate" id="myDateOutput">
+                       <input type="hidden" name="adults" id="adults">
+                       <input type="hidden" name="children" id="children">
                        <input type="text" style="display: none;" class="form-control" id="code" name="code" placeholder="Nếu có" value=${code} >
                        <input type="submit" style="background-color: green; color: white; padding: 10px 20px; border-radius: 40px; border: none; cursor: pointer;" value="Thanh toán">
                    </form>

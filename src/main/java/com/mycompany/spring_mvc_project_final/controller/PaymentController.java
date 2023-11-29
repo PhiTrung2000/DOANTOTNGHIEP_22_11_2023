@@ -1,12 +1,12 @@
 package com.mycompany.spring_mvc_project_final.controller;
 
-import com.mycompany.spring_mvc_project_final.entities.AccountBankingEntity;
-import com.mycompany.spring_mvc_project_final.entities.CategoryEntity;
-import com.mycompany.spring_mvc_project_final.entities.DiscountEntity;
+import com.mycompany.spring_mvc_project_final.entities.*;
+import com.mycompany.spring_mvc_project_final.repository.*;
 import com.mycompany.spring_mvc_project_final.service.AccountBankingService;
 import com.mycompany.spring_mvc_project_final.service.CategoryService;
 import com.mycompany.spring_mvc_project_final.service.DiscountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class PaymentController {
@@ -28,6 +31,16 @@ public class PaymentController {
     private CategoryService categoryService;
     @Autowired
     private DiscountService discountService;
+    @Autowired
+    private BookingRepository bookingRepository;
+    @Autowired
+    private AccountRepository accountRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
+    @Autowired
+    private BookingDetailsRepository bookingDetailsRepository;
+    @Autowired
+    private PaymentRepository paymentRepository;
 
     @RequestMapping(value = {"/user/payment"}, method = RequestMethod.GET)
     public String showPaymentForm(Model model, HttpSession session) {
@@ -128,7 +141,12 @@ public class PaymentController {
     }
 
     @RequestMapping(value = {"/user/processPayment"}, method = RequestMethod.POST)
-    public String paymentsuccess(@RequestParam("code") String code, Model model, HttpSession session) {
+    public String paymentsuccess(@RequestParam("code") String code,
+                                 @RequestParam(name = "checkinDate") @DateTimeFormat(pattern = "dd-MM-yyyy") Date checkinDate,
+                                 @RequestParam(name = "checkoutDate") @DateTimeFormat(pattern = "dd-MM-yyyy") Date checkoutDate,
+                                 @RequestParam("adults") double numOfAdults,
+                                 @RequestParam("children") double numOfChildren,
+                                 Model model, HttpSession session) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = principal.toString();
 
@@ -139,7 +157,6 @@ public class PaymentController {
         }
         String email = (String) session.getAttribute("username");
         Long accountId = accountBankingService.getAccountIdByUsername(email);
-
         // Lấy thông tin bank theo accountId
         AccountBankingEntity accountBanking = accountBankingService.getAccountBankingByAccountId(accountId);
         //Lấy mã giảm giá
@@ -155,8 +172,37 @@ public class PaymentController {
         double amountFinish = amount - amountPayment;
         boolean paymentSuccess = accountBankingService.processPayment(accountBanking, amountPayment);
         if (paymentSuccess) {
+            // Lưu booking
+            BookingEntity bookingEntity = new BookingEntity();
+            bookingEntity.setDescription("Booking " + categoryName);
+            bookingEntity.setStatus("Booked");
+            AccountEntity accountEntity = accountRepository.findByEmail(email);
+            bookingEntity.setAccount(accountEntity);
+            bookingEntity.setBookingdate(new Date());
+            bookingRepository.save(bookingEntity);
+            System.out.println("Giá trị ID vừa tạo là: " + bookingEntity.getId());
+            // Lưu booking details
+            BookingDetailsEntity bookingDetailsEntity = new BookingDetailsEntity();
+            bookingDetailsEntity.setCheckinDate(checkinDate);
+            bookingDetailsEntity.setCheckoutDate(checkoutDate);
+            bookingDetailsEntity.setNumOfAdult(numOfAdults);
+            bookingDetailsEntity.setNumOfChild(numOfChildren);
+            bookingDetailsEntity.setNumOfPeople((int) (numOfAdults + numOfChildren));
+            bookingDetailsEntity.setBooking(bookingEntity);
+            CategoryEntity categoryEntity = categoryRepository.findByName(categoryName);
+            bookingDetailsEntity.setCategory(categoryEntity);
+            bookingDetailsRepository.save(bookingDetailsEntity);
+            // Lưu payment
+            PaymentEntity paymentEntity = new PaymentEntity();
+            paymentEntity.setDate(new Date());
+            paymentEntity.setName(accountBanking.getName());
+            paymentEntity.setPaymentAmount(amountPayment);
+            paymentEntity.setBooking(bookingEntity);
+            paymentRepository.save(paymentEntity);
+
             String success = "Thanh toán thành công";
             model.addAttribute("success",success);
+            return "success";
         } else {
             String fail = "Thanh toán thất bại: Số dư không đủ";
             model.addAttribute("fail",fail);

@@ -22,6 +22,9 @@ public class PaymentEntity {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date date;
 
+    @Column(name = "paymentAmount")
+    private double paymentAmount;
+
     @ManyToOne
     @JoinColumn(name = "bookingId")
     private BookingEntity booking;
@@ -60,5 +63,13 @@ public class PaymentEntity {
 
     public void setBooking(BookingEntity booking) {
         this.booking = booking;
+    }
+
+    public double getPaymentAmount() {
+        return paymentAmount;
+    }
+
+    public void setPaymentAmount(double paymentAmount) {
+        this.paymentAmount = paymentAmount;
     }
 }
