@@ -93,7 +93,7 @@
       <div class="container">
 
         <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="100">
-          <a href="#" class="image d-block bg-image-2" style="background-image: url('/resources/images/img_1.jpg');"></a>
+          <a href="#" class="image d-block bg-image-2" style="background-image: url('/resources/images/rooms/Family.jpg');"></a>
           <div class="text">
             <span class="d-block mb-4"><span class="display-4 text-primary">$200</span> <span class="text-uppercase letter-spacing-2">/ mỗi đêm</span> </span>
             <h2 class="mb-4">Chào mừng bạn đến với phòng Family tại khách sạn chúng tôi!</h2>
@@ -207,24 +207,74 @@
     <script src="/resources/js/main.js"></script>
 
     <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                // Lấy dữ liệu từ sessionStorage
-                var checkinDate = sessionStorage.getItem("checkin_date");
-                var checkoutDate = sessionStorage.getItem("checkout_date");
+        document.addEventListener("DOMContentLoaded", function() {
+            // Lấy dữ liệu từ sessionStorage
+            var checkinDate = sessionStorage.getItem("checkin_date");
+            var checkoutDate = sessionStorage.getItem("checkout_date");
 
-                // Gán sự kiện click cho nút "Đặt Phòng"
-                var bookRoomBtn = document.querySelector(".btn.btn-primary.text-white");
-                if (bookRoomBtn) {
-                    bookRoomBtn.addEventListener("click", function(event) {
-                        // Ngăn chặn hành vi mặc định của thẻ a
-                        event.preventDefault();
+            // Gán sự kiện click cho nút "Đặt Phòng"
+            var bookRoomBtn = document.querySelector(".btn.btn-primary.text-white");
+            if (bookRoomBtn) {
+                bookRoomBtn.addEventListener("click", function(event) {
+                    // Ngăn chặn hành vi mặc định của thẻ a
+                    event.preventDefault();
 
-                        // Chuyển hướng đến trang xử lý với các tham số
+                    // Lấy dữ liệu từ sessionStorage
+                    var checkinDate = sessionStorage.getItem("checkin_date");
+                    var checkoutDate = sessionStorage.getItem("checkout_date");
+
+                    // Kiểm tra xem hai giá trị đã tồn tại hay không
+                    if (!checkinDate || !checkoutDate) {
+                        // Hiển thị modal lỗi nếu không tồn tại
+                        $('#errorModal').modal('show');
+                        return; // Ngăn chặn thực hiện các bước tiếp theo nếu có lỗi
+                    }
+
+                    // Kiểm tra xem đã nhập đủ thông tin hay không
+                    var adults = sessionStorage.getItem("adults");
+                    var children = sessionStorage.getItem("children");
+
+                    if (!adults || !children) {
+                        // Hiển thị modal lỗi nếu thông tin không đủ
+                        $('#errorModal').modal('show');
+                    } else {
+                        // Nếu đầy đủ, chuyển hướng đến trang xử lý với các tham số
                         window.location.href = "/user/booking/Family?checkinDate=" + checkinDate + "&checkoutDate=" + checkoutDate;
-                    });
-                }
-            });
-        </script>
+                    }
+                });
+            }
+
+            // Gán sự kiện click cho nút "Ok" trong modal lỗi
+            var okBtn = document.querySelector("#errorModal .btn-primary[data-dismiss='modal']");
+            if (okBtn) {
+                okBtn.addEventListener("click", function() {
+                    // Điều hướng đến trang /rooms khi nhấn nút "Ok"
+                    window.location.href = "/rooms";
+                });
+            }
+        });
+    </script>
+
+        <!-- Bootstrap Modal -->
+        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Thông báo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Vui lòng nhập đầy đủ thông tin và tìm phòng trước khi đặt phòng
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
   </body>
 </html>

@@ -7,6 +7,8 @@ import com.mycompany.spring_mvc_project_final.service.CategoryService;
 import com.mycompany.spring_mvc_project_final.service.DiscountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -15,9 +17,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.security.Principal;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,6 +48,8 @@ public class PaymentController {
     private BookingDetailsRepository bookingDetailsRepository;
     @Autowired
     private PaymentRepository paymentRepository;
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     @RequestMapping(value = {"/user/payment"}, method = RequestMethod.GET)
     public String showPaymentForm(Model model, HttpSession session) {
@@ -199,15 +208,97 @@ public class PaymentController {
             paymentEntity.setPaymentAmount(amountPayment);
             paymentEntity.setBooking(bookingEntity);
             paymentRepository.save(paymentEntity);
-
+            // Lưu session cần thiết
+            session.setAttribute("accountEntity", accountEntity);
+            session.setAttribute("bookingDetailsEntity", bookingDetailsEntity);
+            session.setAttribute("categoryName", category);
+            session.setAttribute("amountPayment", amountPayment);
             String success = "Thanh toán thành công";
             model.addAttribute("success",success);
-            return "success";
+            return "redirect:/user/mail";
         } else {
             String fail = "Thanh toán thất bại: Số dư không đủ";
             model.addAttribute("fail",fail);
         }
         return "payment";
+    }
+
+    @RequestMapping(value = {"/user/mail"}, method = RequestMethod.GET)
+    public ModelAndView testSendMail(ModelAndView model, HttpSession session) throws IOException {
+        // Send mail
+        AccountEntity accountEntity = (AccountEntity) session.getAttribute("accountEntity");
+        BookingDetailsEntity bookingDetailsEntity = (BookingDetailsEntity) session.getAttribute("bookingDetailsEntity");
+        CategoryEntity categoryEntity = (CategoryEntity) session.getAttribute("categoryName");
+        double amountPayment = (double) session.getAttribute("amountPayment");
+        String NameKH = accountEntity.getName();
+        String EmailKH = accountEntity.getEmail();
+        int SDTKH = accountEntity.getPhone();
+        Date Checkin = bookingDetailsEntity.getCheckinDate();
+        Date Checkout = bookingDetailsEntity.getCheckoutDate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String DateCheckIn = dateFormat.format(Checkin);
+        String DateCheckOut = dateFormat.format(Checkout);
+        int numberAdult =(int) bookingDetailsEntity.getNumOfAdult();
+        int numberChildren = (int) bookingDetailsEntity.getNumOfChild();
+        String categoryName = categoryEntity.getName();
+        double price = categoryEntity.getPrice() * 23000;
+        double priceAmount = price - amountPayment;
+        double priceAmountPay = amountPayment;
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,### VNĐ");
+        String formattedPrice = decimalFormat.format(price);
+        String formattedPriceAmount = decimalFormat.format(priceAmount);
+        String formattedPriceAmountPay = decimalFormat.format(priceAmountPay);
+
+        String email = "hungnguyen987x@gmail.com";
+        String emailContent = "<p>Chào <strong>[NameKH]</strong>,</p>" +
+                "<p>Chúc mừng! Đặt phòng của bạn tại Sogo Hotel đã được xác nhận thành công.</p>" +
+                "<p>Dưới đây là chi tiết đặt phòng của bạn:</p>" +
+                "<ul>" +
+                "   <li>Email: <strong>[Email]</strong></li>" +
+                "   <li>Số điện thoại: <strong>[Phone]</strong></li>" +
+                "   <li>Ngày nhận phòng: <strong>[Checkin]</strong></li>" +
+                "   <li>Ngày trả phòng: <strong>[Checkout]</strong></li>" +
+                "   <li>Số người lớn: <strong>[adult]</strong></li>" +
+                "   <li>Số trẻ em: <strong>[children]</strong></li>" +
+                "   <li>Loại phòng: <strong>[categoryName]</strong></li>" +
+                "   <li>Giá: <strong>[priceRoom]</strong></li>" +
+                "   <li>Khuyến mãi: <strong>[promo]</strong></li>" +
+                "   <li>Số tiền đã thanh toán: <strong>[priceKH]</strong></li>" +
+                "</ul>" +
+                "<p>Vui lòng kiểm tra lại các thông tin trên. Nếu có bất kỳ sai sót hoặc thắc mắc, hãy liên hệ với chúng tôi ngay lập tức.</p>" +
+                "<p>Chúng tôi mong đợi sự chờ đón bạn tại Sogo Hotel. Nếu bạn có bất kỳ yêu cầu đặc biệt nào khác, hãy thông báo trước để chúng tôi có thể phục vụ bạn tốt nhất.</p>" +
+                "<p>Cảm ơn bạn đã chọn Sogo Hotel. Chúng tôi rất mong đợi chờ đón bạn và hy vọng bạn có một kỳ nghỉ tuyệt vời!</p>" +
+                "<p>Trân trọng,<br>Sogo Hotel</p>";
+
+// Thực hiện thay thế
+        emailContent = emailContent.replace("[NameKH]", NameKH);
+        emailContent = emailContent.replace("[Email]", EmailKH);
+        emailContent = emailContent.replace("[Phone]", String.valueOf(SDTKH));
+        emailContent = emailContent.replace("[Checkin]", DateCheckIn);
+        emailContent = emailContent.replace("[Checkout]", DateCheckOut);
+        emailContent = emailContent.replace("[adult]", String.valueOf(numberAdult));
+        emailContent = emailContent.replace("[children]", String.valueOf(numberChildren));
+        emailContent = emailContent.replace("[categoryName]", categoryName);
+        emailContent = emailContent.replace("[priceRoom]", formattedPrice);
+        emailContent = emailContent.replace("[promo]", formattedPriceAmount);
+        emailContent = emailContent.replace("[priceKH]", formattedPriceAmountPay);
+
+        sendEmail(email, "Xác nhận Đặt phòng thành công tại Sogo Hotel", emailContent);
+
+        model.addObject("msg", email);
+        return new ModelAndView("success");
+    }
+    public void sendEmail(String recipient, String subject, String body) {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+            helper.setTo(recipient);
+            helper.setSubject(subject);
+            helper.setText(body, true);
+            javaMailSender.send(message);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 }
 

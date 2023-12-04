@@ -58,7 +58,8 @@
                         <li><a href="reservation.html">Reservation</a></li>
                         <li><a href="dangky">Đăng Ký</a></li>
                         <c:if test="${not empty username}">
-                            <li>Welcome, ${username}</li>
+                            <li style="background-color: #4CAF50; color: #fff; padding: 10px; border-radius: 55px; font-size: 23px; display: inline-block;">Welcome, ${username}</li>
+                            <li><a href="/user/history" target="_blank">Lịch sử đặt phòng</a></li>
                             <li><a href="logout">Logout</a></li>
                         </c:if>
                         <c:if test="${empty username}">
@@ -103,7 +104,7 @@
         <div class="row check-availabilty" id="next">
           <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
 
-            <form id="availabilityForm" action="/checkAvailability" method="post">
+            <form id="availabilityForm" action="/checkAvailability" method="post" onsubmit="return validateForm(event)">
                 <div class="row">
                     <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                         <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
@@ -633,17 +634,37 @@
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-    <script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
         flatpickr("#myDateInput", {
-            dateFormat: "d-m-Y",
-        });
-    </script>
+            dateFormat: "d-m-Y", // Định dạng ngày hiển thị cho ô Check In
+              minDate: "today",
+            onChange: function (selectedDates, dateStr, instance) {
+                var checkOutInput = document.getElementById("myDateOutput");
 
-    <script>
-            flatpickr("#myDateOutput", {
-                dateFormat: "d-m-Y",
-            });
-        </script>
+                // Kiểm tra nếu ngày Check Out đã được chọn và trước ngày Check In
+                if (checkOutInput.value !== "" && flatpickr.parseDate(checkOutInput.value, "d-m-Y") <= selectedDates[0]) {
+                    alert("Ngày đến không hợp lệ. Vui lòng chọn lại");
+                    checkOutInput.value = ""; // Xóa giá trị ngày Check Out nếu không hợp lệ
+                }
+            },
+        });
+
+        flatpickr("#myDateOutput", {
+            dateFormat: "d-m-Y", // Định dạng ngày hiển thị cho ô Check Out
+             minDate: "today",
+            onChange: function (selectedDates, dateStr, instance) {
+                var checkInInput = document.getElementById("myDateInput");
+
+                // Kiểm tra nếu ngày Check Out trước ngày Check In
+                if (flatpickr.parseDate(dateStr, "d-m-Y") <= flatpickr.parseDate(checkInInput.value, "d-m-Y")) {
+                    alert("Ngày đi không hợp lệ. Vui lòng chọn lại");
+                    instance.clear(); // Xóa giá trị ngày Check Out nếu không hợp lệ
+                }
+            },
+        });
+    });
+</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -765,6 +786,80 @@ document.getElementById('children').addEventListener('change', function() {
     }
 });
 </script>
+
+<script>
+    function validateForm(event) {
+        var adults = document.getElementById('adults').value;
+        var children = document.getElementById('children').value;
+        var checkinDate = document.getElementById('myDateInput').value;
+        var checkoutDate = document.getElementById('myDateOutput').value;
+
+        // Kiểm tra xem cả hai trường đã được nhập hay chưa
+        if (!checkinDate || !checkoutDate) {
+            $('#myModal').modal('show');
+            event.preventDefault(); // Ngăn chặn sự kiện submit mặc định
+            return false; // Ngăn chặn chuyển hướng trang
+        }
+
+        // Kiểm tra trường hợp 1
+        if (!adults || !children || (adults === '0' && children === '0') || (adults === '0' && !children) || (!adults && children === '0')) {
+            $('#myModalCase1').modal('show');
+            event.preventDefault(); // Ngăn chặn sự kiện submit mặc định
+            return false; // Ngăn chặn chuyển hướng trang
+        }
+
+        // Kiểm tra trường hợp 2
+        if (adults === '0' && children === '0') {
+            $('#myModalCase1').modal('show');
+            event.preventDefault(); // Ngăn chặn sự kiện submit mặc định
+            return false; // Ngăn chặn chuyển hướng trang
+        }
+
+        // Nếu mọi thứ hợp lệ, cho phép chuyển hướng trang
+        return true;
+    }
+</script>
+
+
+   <!-- Bootstrap Modal -->
+     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog" role="document">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h5 class="modal-title font-weight-bold text-center" id="exampleModalLabel">Thông báo</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>
+           </div>
+           <div class="modal-body">
+             Vui lòng nhập cả ngày đến và ngày đi
+           </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Đóng</button>
+           </div>
+         </div>
+       </div>
+     </div>
+
+     <!-- Modal cho trường hợp adults và children -->
+     <div class="modal fade" id="myModalCase1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelCase1" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title font-weight-bold text-center" id="exampleModalLabelCase1">Thông báo</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>
+                 <div class="modal-body">
+                     Vui lòng đúng nhập thông tin số người lớn và trẻ em
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Đóng</button>
+                 </div>
+             </div>
+         </div>
+     </div>
 
   </body>
 </html>

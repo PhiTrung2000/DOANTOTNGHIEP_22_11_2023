@@ -26,6 +26,65 @@
     <!-- Theme Style -->
     <link rel="stylesheet" href="/resources/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Lấy giá trị từ sessionStorage
+            var storedQuantity = sessionStorage.getItem('customQuantity');
+
+            // Kiểm tra nếu có giá trị, cập nhật option trong dropdown menu
+            if (storedQuantity) {
+                // Lấy danh sách các option trong dropdown menu
+                var options = document.getElementById('adults').options;
+
+                // Kiểm tra xem giá trị có nằm trong danh sách mặc định hay không
+                var isDefaultValue = Array.from(options).some(function (option) {
+                    return option.value === storedQuantity;
+                });
+
+                // Nếu giá trị không nằm trong danh sách mặc định, thêm nó vào
+                if (!isDefaultValue) {
+                    var newOption = document.createElement('option');
+                    newOption.value = storedQuantity;
+                    newOption.text = storedQuantity;
+                    options.add(newOption);
+                }
+
+                // Cập nhật giá trị của dropdown menu
+                document.getElementById('adults').value = storedQuantity;
+            }
+        });
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Lấy giá trị từ sessionStorage
+                var storedQuantity = sessionStorage.getItem('customQuantityChildren');
+
+                // Kiểm tra nếu có giá trị, cập nhật option trong dropdown menu
+                if (storedQuantity) {
+                    // Lấy danh sách các option trong dropdown menu
+                    var options = document.getElementById('children').options;
+
+                    // Kiểm tra xem giá trị có nằm trong danh sách mặc định hay không
+                    var isDefaultValue = Array.from(options).some(function (option) {
+                        return option.value === storedQuantity;
+                    });
+
+                    // Nếu giá trị không nằm trong danh sách mặc định, thêm nó vào
+                    if (!isDefaultValue) {
+                        var newOption = document.createElement('option');
+                        newOption.value = storedQuantity;
+                        newOption.text = storedQuantity;
+                        options.add(newOption);
+                    }
+
+                    // Cập nhật giá trị của dropdown menu
+                    document.getElementById('children').value = storedQuantity;
+                }
+            });
+            </script>
+
   </head>
   <body>
     
@@ -115,7 +174,7 @@
             <div class="row check-availabilty" id="next">
               <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
 
-                <form id="availabilityForm" action="/user/booking/${categoryName}" method="get">
+                <form id="availabilityForm" action="/user/booking/${categoryName}" method="get" onsubmit="return validateForm(event)">
                 <div class="row">
                     <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                         <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
@@ -142,6 +201,7 @@
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4+</option>
+                                        <option value="custom">Custom</option>
                                     </select>
                                 </div>
                             </div>
@@ -155,6 +215,7 @@
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4+</option>
+                                        <option value="custom">Custom</option>
                                     </select>
                                 </div>
                             </div>
@@ -293,17 +354,37 @@
     <script src="/resources/js/main.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script>
-        flatpickr("#myDateInput", {
-            dateFormat: "d-m-Y",
-        });
-    </script>
+   <script>
+           document.addEventListener("DOMContentLoaded", function () {
+               flatpickr("#myDateInput", {
+                   dateFormat: "d-m-Y", // Định dạng ngày hiển thị cho ô Check In
+                     minDate: "today",
+                   onChange: function (selectedDates, dateStr, instance) {
+                       var checkOutInput = document.getElementById("myDateOutput");
 
-    <script>
-            flatpickr("#myDateOutput", {
-                dateFormat: "d-m-Y",
-            });
-        </script>
+                       // Kiểm tra nếu ngày Check Out đã được chọn và trước ngày Check In
+                       if (checkOutInput.value !== "" && flatpickr.parseDate(checkOutInput.value, "d-m-Y") <= selectedDates[0]) {
+                           alert("Ngày đến không hợp lệ. Vui lòng chọn lại");
+                           checkOutInput.value = ""; // Xóa giá trị ngày Check Out nếu không hợp lệ
+                       }
+                   },
+               });
+
+               flatpickr("#myDateOutput", {
+                   dateFormat: "d-m-Y", // Định dạng ngày hiển thị cho ô Check Out
+                    minDate: "today",
+                   onChange: function (selectedDates, dateStr, instance) {
+                       var checkInInput = document.getElementById("myDateInput");
+
+                       // Kiểm tra nếu ngày Check Out trước ngày Check In
+                       if (flatpickr.parseDate(dateStr, "d-m-Y") <= flatpickr.parseDate(checkInInput.value, "d-m-Y")) {
+                           alert("Ngày đi không hợp lệ. Vui lòng chọn lại");
+                           instance.clear(); // Xóa giá trị ngày Check Out nếu không hợp lệ
+                       }
+                   },
+               });
+           });
+       </script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -336,6 +417,12 @@
         var adults = sessionStorage.getItem("adults");
         var children = sessionStorage.getItem("children");
 
+        // Log values to console
+        console.log("From Date:", fromDate);
+        console.log("To Date:", toDate);
+        console.log("Adults:", adults);
+        console.log("Children:", children);
+
         // Sử dụng giá trị làm gì đó (ví dụ: điền giá trị vào các trường form trên trang checkAvailability)
         document.getElementById("myDateInput").value = fromDate;
         document.getElementById("myDateOutput").value = toDate;
@@ -359,5 +446,78 @@
          window.open(destinationUrl, '_blank');
     }
 </script>
+
+<script>
+    $(document).ready(function(){
+        // Show modal when either Adults or Children container is clicked
+        $('#adults, #children').on('click', function(){
+            $('#changeGuestsModal').modal('show');
+        });
+
+        // Redirect to /rooms when OK is clicked
+        $('#confirmChange').click(function(){
+            window.location.href = '/rooms';
+        });
+    });
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="changeGuestsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Thay đổi số lượng người ở?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn muốn thay đổi số lượng người ở? Vui lòng nhấn Ok để quay lại trang tìm kiếm loại phòng cho phù hợp nhé.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary text-white" id="confirmChange">OK</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+     function validateForm(event) {
+       var checkinDate = document.getElementById('myDateInput');
+       var checkoutDate = document.getElementById('myDateOutput');
+
+       // Kiểm tra xem cả hai trường đã được nhập hay chưa
+       if (!checkinDate.value || !checkoutDate.value) {
+          $('#myModal').modal('show');
+         event.preventDefault(); // Ngăn chặn sự kiện submit mặc định
+         return false; // Ngăn chặn chuyển hướng trang
+       }
+
+       // Nếu mọi thứ hợp lệ, cho phép chuyển hướng trang
+       return true;
+     }
+   </script>
+
+   <!-- Bootstrap Modal -->
+     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog" role="document">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h5 class="modal-title font-weight-bold text-center" id="exampleModalLabel">Thông báo</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>
+           </div>
+           <div class="modal-body">
+             Vui lòng nhập cả ngày đến và ngày đi
+           </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Đóng</button>
+           </div>
+         </div>
+       </div>
+     </div>
+
   </body>
 </html>
