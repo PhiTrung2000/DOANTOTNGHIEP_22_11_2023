@@ -50,20 +50,20 @@
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="rooms">Rooms</a></li>
-                        <li><a href="about.jsp">About</a></li>
-                        <li><a href="events.jsp">Events</a></li>
-                        <li><a href="contact.jsp">Contact</a></li>
-                        <li><a href="reservation.html">Reservation</a></li>
+                        <li class="active"><a href="/">Trang chủ</a></li>
+                        <li><a href="rooms">Phòng</a></li>
+                        <li><a href="about">Giới Thiệu</a></li>
+                        <li><a href="destination">Điểm Đến</a></li>
+                        <li><a href="contact">Liên Hệ</a></li>
+                        <li><a href="restaurant">Nhà Hàng</a></li>
                         <li><a href="dangky">Đăng Ký</a></li>
                         <c:if test="${not empty username}">
                             <li style="background-color: #4CAF50; color: #fff; padding: 10px; border-radius: 55px; font-size: 23px; display: inline-block;">Welcome, ${username}</li>
                             <li><a href="/user/history" target="_blank">Lịch sử đặt phòng</a></li>
-                            <li><a href="logout">Logout</a></li>
+                            <li><a href="logout">Đăng xuất</a></li>
                         </c:if>
                         <c:if test="${empty username}">
-                            <li><a href="login">Login</a></li>
+                            <li><a href="login">Đăng Nhập</a></li>
                         </c:if>
                         <c:if test="${pageContext.request.userPrincipal != null and pageContext.request.isUserInRole('ROLE_ADMIN')}">
                             <li><a href="admin/home">Admin</a></li>
@@ -84,8 +84,8 @@
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
-            <span class="custom-caption text-uppercase text-white d-block  mb-3">Welcome To 5 <span class="fa fa-star text-primary"></span>   Hotel</span>
-            <h1 class="heading">A Best Place To Stay</h1>
+            <span class="custom-caption text-uppercase text-white d-block  mb-3">Chào Mừng Đến Với Khách sạn<span class="fa fa-star text-primary"></span>   Sogo Hotel</span>
+            <h1 class="heading" style="font-family: 'Roboto', sans-serif;">Sự Lựa Chọn Lí Tưởng</h1>
           </div>
         </div>
       </div>
@@ -107,14 +107,14 @@
             <form id="availabilityForm" action="/checkAvailability" method="post" onsubmit="return validateForm(event)">
                 <div class="row">
                     <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                        <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
+                        <label for="checkin_date" class="font-weight-bold text-black">Ngày đến</label>
                         <div class="field-icon-wrap">
                             <div class="icon"><span class="icon-calendar"></span></div>
                             <input type="text" id="myDateInput" name="checkin_date" class="form-control" style="background-color: white;">
                         </div>
                     </div>
                     <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                        <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
+                        <label for="checkout_date" class="font-weight-bold text-black">Ngày đi</label>
                         <div class="field-icon-wrap">
                             <div class="icon"><span class="icon-calendar"></span></div>
                             <input type="text" id="myDateOutput" name="checkout_date" class="form-control" style="background-color: white;">
@@ -123,7 +123,7 @@
                     <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
                         <div class="row">
                             <div class="col-md-6 mb-3 mb-md-0">
-                                <label for="adults" class="font-weight-bold text-black">Adults</label>
+                                <label for="adults" class="font-weight-bold text-black">Người lớn</label>
                                 <div class="field-icon-wrap">
                                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                     <select name="adults" id="adults" class="form-control">
@@ -136,7 +136,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3 mb-md-0">
-                                <label for="children" class="font-weight-bold text-black">Children</label>
+                                <label for="children" class="font-weight-bold text-black">Trẻ em</label>
                                 <div class="field-icon-wrap">
                                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                     <select name="children" id="children" class="form-control">
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3 align-self-end">
-                        <button type="submit" class="btn btn-primary btn-block text-white">Check Availability</button>
+                        <button type="submit" class="btn btn-primary btn-block text-white">Tìm kiếm</button>
                     </div>
                 </div>
             </form>
@@ -170,12 +170,12 @@
             <figure class="img-absolute">
               <img src="resources/images/food-1.jpg" alt="Image" class="img-fluid">
             </figure>
-            <img src="resources/images/img_1.jpg" alt="Image" class="img-fluid rounded">
+            <img src="resources/images/rooms/VIP.jpg" alt="Image" class="img-fluid rounded">
           </div>
           <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
-            <h2 class="heading">Welcome!</h2>
-            <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p><a href="#" class="btn btn-primary text-white py-2 mr-3">Learn More</a> <span class="mr-3 font-family-serif"><em>or</em></span> <a href="https://vimeo.com/channels/staffpicks/93951774"  data-fancybox class="text-uppercase letter-spacing-1">See video</a></p>
+            <h2 class="heading">Chào Mừng!</h2>
+            <p class="mb-4">Chào mừng quý khách đến với khách sạn chúng tôi! Chúng tôi rất vinh dự được đón tiếp và phục vụ quý khách trong hành trình của mình. Với cam kết đem đến trải nghiệm lưu trú độc đáo và thoải mái nhất, chúng tôi tự hào về dịch vụ chăm sóc khách hàng tận tâm và không ngừng nỗ lực để đáp ứng mọi nhu cầu của quý vị</p>
+            <p><a href="/about" class="btn btn-primary text-white py-2 mr-3">Xem thêm</a> <span class="mr-3 font-family-serif"><em>or</em></span> <a href="https://www.youtube.com/watch?v=RNQV7kD3DI4"  data-fancybox class="text-uppercase letter-spacing-1">Video</a></p>
           </div>
           
         </div>
@@ -186,43 +186,43 @@
       <div class="container">
         <div class="row justify-content-center text-center mb-5">
           <div class="col-md-7">
-            <h2 class="heading" data-aos="fade-up">Rooms &amp; Suites</h2>
-            <p data-aos="fade-up" data-aos-delay="100">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+            <h2 class="heading" data-aos="fade-up">Hệ Thống Phòng</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Phòng của chúng tôi rất hiện đại và tiện nghi giúp mọi người đến với khách sạn của chúng tôi luôn thoải mái và vui vẻ, với thiết kế có sàn gỗ bóng, vải tự nhiên, đồ nội thất bằng mây thoải mái, cửa chớp kiểu đồn điền và quạt trần</p>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="#" class="room">
+            <a href="/search/Standard" class="room" target="_blank">
               <figure class="img-wrap">
-                <img src="resources/images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
+                <img src="resources/images/rooms/Standard.jpg" alt="Free website template" class="img-fluid mb-3">
               </figure>
               <div class="p-3 text-center room-info">
-                <h2>Single Room</h2>
-                <span class="text-uppercase letter-spacing-1">90$ / per night</span>
+                <h2>Standard Room</h2>
+                <span class="text-uppercase letter-spacing-1">100$ / 1 Đêm</span>
               </div>
             </a>
           </div>
 
           <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="#" class="room">
+            <a href="/search/Family" class="room" target="_blank">
               <figure class="img-wrap">
-                <img src="resources/images/img_2.jpg" alt="Free website template" class="img-fluid mb-3">
+                <img src="resources/images/rooms/Family.jpg" alt="Free website template" class="img-fluid mb-3">
               </figure>
               <div class="p-3 text-center room-info">
                 <h2>Family Room</h2>
-                <span class="text-uppercase letter-spacing-1">120$ / per night</span>
+                <span class="text-uppercase letter-spacing-1">200$ / 1 Đêm</span>
               </div>
             </a>
           </div>
 
           <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="#" class="room">
+            <a href="/search/Penthouse" class="room" target="_blank">
               <figure class="img-wrap">
-                <img src="resources/images/img_3.jpg" alt="Free website template" class="img-fluid mb-3">
+                <img src="resources/images/rooms/Penthouse.jpg" alt="Free website template" class="img-fluid mb-3">
               </figure>
               <div class="p-3 text-center room-info">
-                <h2>Presidential Room</h2>
-                <span class="text-uppercase letter-spacing-1">250$ / per night</span>
+                <h2>Penthouse Room</h2>
+                <span class="text-uppercase letter-spacing-1">500$ / 1 Đêm</span>
               </div>
             </a>
           </div>
@@ -237,8 +237,8 @@
       <div class="container">
         <div class="row justify-content-center text-center mb-5">
           <div class="col-md-7">
-            <h2 class="heading" data-aos="fade-up">Photos</h2>
-            <p data-aos="fade-up" data-aos-delay="100">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+            <h2 class="heading" data-aos="fade-up">Một số hình ảnh</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Khách sạn chúng tôi tự hào với kiến trúc đẹp mắt và thiết kế hiện đại. Bên ngoài, quý khách sẽ được chào đón bởi một kiến trúc sang trọng, tinh tế, và nổi bật trong bức tranh đô thị hoặc tự nhiên xung quanh</p>
           </div>
         </div>
         <div class="row">
@@ -275,344 +275,199 @@
     <!-- END section -->
     
     <section class="section bg-image overlay" style="background-image: url('resources/images/hero_3.jpg');">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-7">
-            <h2 class="heading text-white" data-aos="fade">Our Restaurant Menu</h2>
-            <p class="text-white" data-aos="fade" data-aos-delay="100">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+          <div class="container">
+            <div class="row justify-content-center text-center mb-5">
+              <div class="col-md-7">
+                <h2 class="heading text-white" data-aos="fade">Món Ăn Của Khách Sạn</h2>
+                <p class="text-white" data-aos="fade" data-aos-delay="100">Thức ăn tại khách sạn của chúng tôi không chỉ là bữa ăn, mà là một trải nghiệm ẩm thực đặc biệt, kết hợp giữa hương vị tuyệt vời, chất lượng tốt nhất và sự sáng tạo trong việc chế biến. Dưới đây là một số đặc điểm về thực đơn và ẩm thực tại khách sạn của chúng tôi.</p>
+              </div>
+            </div>
+            <div class="food-menu-tabs" data-aos="fade">
+              <ul class="nav nav-tabs mb-5" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active letter-spacing-2" id="mains-tab" data-toggle="tab" href="#mains" role="tab" aria-controls="mains" aria-selected="true">Món Chính</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link letter-spacing-2" id="desserts-tab" data-toggle="tab" href="#desserts" role="tab" aria-controls="desserts" aria-selected="false">Tráng Miệng</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link letter-spacing-2" id="drinks-tab" data-toggle="tab" href="#drinks" role="tab" aria-controls="drinks" aria-selected="false">Thức Uống</a>
+                </li>
+              </ul>
+              <div class="tab-content py-5" id="myTabContent">
+
+
+                <div class="tab-pane fade show active text-left" id="mains" role="tabpanel" aria-labelledby="mains-tab">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">350.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Thịt hun khói</a></h3>
+                        <p class="text-white text-opacity-7">Món thịt hun khói là một đặc sản ẩm thực có hương vị độc đáo và hấp dẫn, được chế biến thông qua quá trình hun khói truyền thống. Đây là một món ăn phổ biến và được yêu thích tại nhiều vùng trên thế giới</p>
+                      </div>
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">220.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Bò Bít Tết</a></h3>
+                        <p class="text-white text-opacity-7">Món bò bít tết thường được ăn kèm với các loại sốt như sốt nấm, sốt tiêu xanh, hoặc sốt bơ. Bạn cũng có thể kèm theo các loại rau sống như cà chua, cà rốt, cần tây và khoai tây chiên.</p>
+                      </div>
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">150.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Salad Rong Nho</a></h3>
+                        <p class="text-white text-opacity-7">Món salad rong nho là một sự kết hợp tuyệt vời giữa hương vị tươi mới của rau xanh, hương thơm của rong biển và hương ngọt của nho. Đây là một món salad khỏe mạnh, ngon miệng và đầy dinh dưỡng.</p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">230.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Cơm Chiên Bát Bửu</a></h3>
+                        <p class="text-white text-opacity-7">Cơm chiên bát bửu là một món ăn truyền thống ngon miệng và độc đáo trong ẩm thực Trung Quốc. Tên gọi "bát bửu" có thể dịch là "tám vị", thường ám chỉ sự phong phú và hài hòa của tám thành phần khác nhau được sử dụng trong món ăn này.</p>
+                      </div>
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">180.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Súp hải sản</a></h3>
+                        <p class="text-white text-opacity-7">Món súp hải sản là một đặc sản biển ngon miệng và phổ biến trên toàn thế giới, thường được yêu thích vì hương vị đậm đà, tươi mới và độ dinh dưỡng cao.</p>
+                      </div>
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">400.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Tôm càng rang muối</a></h3>
+                        <p class="text-white text-opacity-7">Tôm càng rang muối thường được trang trí bằng rau sống như rau sống, cà chua, và hành lá để tạo điểm nhấn màu sắc và tạo hình thức đẹp mắt. Món tôm thường được phục vụ nóng, trực tiếp từ chảo để giữ được độ giòn.</p>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div> <!-- .tab-pane -->
+
+                <div class="tab-pane fade text-left" id="desserts" role="tabpanel" aria-labelledby="desserts-tab">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">75.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Bánh su với kem phô mai hạt dẻ</a></h3>
+                        <p class="text-white text-opacity-7">Bánh su với kem phô mai hạt dẻ là một món tráng miệng thơm ngon và hấp dẫn, kết hợp giữa sự giòn tan của bánh su, hương vị béo ngậy của kem phô mai, và sự thơm ngon của hạt dẻ.</p>
+                      </div>
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">95.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Bánh xốp Macaron vị trà xanh</a></h3>
+                        <p class="text-white text-opacity-7">
+    Bánh xốp Macaron vị trà xanh là một món tráng miệng thanh nhã, hấp dẫn và đầy sáng tạo. Với lớp vỏ bánh xốp mỏng và nhẹ, kết hợp với nhân kem trà xanh đặc trưng, món này không chỉ là một tác phẩm nghệ thuật ẩm thực mà còn mang lại trải nghiệm hương vị tuyệt vời.</p>
+                      </div>
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">110.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Thạch xoài ăn kèm sữa dừa</a></h3>
+                        <p class="text-white text-opacity-7">Thạch xoài ăn kèm sữa dừa là một món tráng miệng mát lạnh, hấp dẫn và ngon miệng, đặc biệt là trong những ngày nắng nóng. Món này thường mang lại hương vị ngọt, chua, và béo ngậy từ xoài cùng với sự mát lạnh của thạch và sữa dừa.</p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">120.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Chè hạnh nhân tàu hũ với long nhãn</a></h3>
+                        <p class="text-white text-opacity-7">Chè hạnh nhân tàu hũ với long nhãn là một món tráng miệng truyền thống trong ẩm thực Việt Nam, kết hợp giữa vị ngọt của hạnh nhân, độ mềm của tàu hủ, và hương thơm đặc trưng của long nhãn.</p>
+                      </div>
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">65.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Bánh tiramisu</a></h3>
+                        <p class="text-white text-opacity-7">Tiramisu là một món tráng miệng ngon miệng, xuất phát từ Ý, được biết đến với hương vị thơm ngon của cà phê và sự mềm mại, béo ngậy của kem cheese mascarpone.</p>
+                      </div>
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">75.00</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Bánh Mochi</a></h3>
+                        <p class="text-white text-opacity-7">Bánh mochi là một loại bánh truyền thống xuất phát từ Nhật Bản, có texture đặc trưng mềm mại, nhẹ nhàng và có thể coi là một trải nghiệm ẩm thực độc đáo.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div> <!-- .tab-pane -->
+                <div class="tab-pane fade text-left" id="drinks" role="tabpanel" aria-labelledby="drinks-tab">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">95.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Xoài+Thơm+Chanh dây</a></h3>
+                        <p class="text-white text-opacity-7">Thức uống xoài + thơm + chanh dây là một lựa chọn tuyệt vời để giải khát và thưởng thức hương vị tươi mới.</p>
+                      </div>
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">160.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Mojto</a></h3>
+                        <p class="text-white text-opacity-7">Mojito là một thức uống cocktail có nguồn gốc từ Cuba, nổi tiếng với hương vị tươi mát, chua ngọt và hương thơm của lá bạc hà.</p>
+                      </div>
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">350.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Bacardi Gold</a></h3>
+                        <p class="text-white text-opacity-7">Bacardi Gold là một dòng rum nổi tiếng thuộc sở hữu của nhãn hiệu nổi tiếng Bacardi, một trong những nhãn hiệu rum lớn nhất và được biết đến trên khắp thế giới.</p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">75.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Capuchino</a></h3>
+                        <p class="text-white text-opacity-7">Cappuccino là một loại cà phê phổ biến và thơm ngon, có nguồn gốc từ Ý. Đây là một loại thức uống cà phê espresso kết hợp với sữa hơi nóng và bọt sữa, tạo ra một hương vị phức tạp và lớp bọt mịn ở trên cùng.</p>
+                      </div>
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">25.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Nước Uống có ga</a></h3>
+                        <p class="text-white text-opacity-7">Nước uống có ga là một dạng thức uống phổ biến trên khắp thế giới, được biết đến với sự tăng động và cảm giác sảng khoái do có chứa carbon dioxide (CO2) tạo nên bọt khí.</p>
+                      </div>
+                      <div class="food-menu mb-5">
+                        <span class="d-block text-primary h4 mb-3">65.000</span>
+                        <h3 class="text-white"><a href="#" class="text-white">Trà &amp; Nước Ép</a></h3>
+                        <p class="text-white text-opacity-7">Trà và nước ép là hai loại thức uống phổ biến, đa dạng, và rất phổ biến trên khắp thế giới với nhiều loại và hương vị khác nhau.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div> <!-- .tab-pane -->
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="food-menu-tabs" data-aos="fade">
-          <ul class="nav nav-tabs mb-5" id="myTab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active letter-spacing-2" id="mains-tab" data-toggle="tab" href="#mains" role="tab" aria-controls="mains" aria-selected="true">Mains</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link letter-spacing-2" id="desserts-tab" data-toggle="tab" href="#desserts" role="tab" aria-controls="desserts" aria-selected="false">Desserts</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link letter-spacing-2" id="drinks-tab" data-toggle="tab" href="#drinks" role="tab" aria-controls="drinks" aria-selected="false">Drinks</a>
-            </li>
-          </ul>
-          <div class="tab-content py-5" id="myTabContent">
-            
-            
-            <div class="tab-pane fade show active text-left" id="mains" role="tabpanel" aria-labelledby="mains-tab">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$20.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Murgh Tikka Masala</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$35.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Fish Moilee</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$15.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Safed Gosht</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
+        </section>
+
+        <!-- END section -->
+
+            <section class="section bg-image overlay" style="background-image: url('resources/images/hero_4.jpg');">
+            <div class="container" >
+              <div class="row align-items-center">
+                <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
+                  <h2 class="text-white font-weight-bold">Một Địa Điểm Đáng Để Ở. Đặt Ngay !</h2>
                 </div>
-                <div class="col-md-6">
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$10.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">French Toast Combo</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$8.35</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Vegie Omelet</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$22.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Chorizo &amp; Egg Omelet</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
+                <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
+                  <a href="/rooms" class="btn btn-outline-white-primary py-3 text-white px-5">Đặt Ngay</a>
                 </div>
               </div>
-              
-
-            </div> <!-- .tab-pane -->
-
-            <div class="tab-pane fade text-left" id="desserts" role="tabpanel" aria-labelledby="desserts-tab">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$11.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Banana Split</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$72.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Sticky Toffee Pudding</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$26.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Pecan</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$42.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Apple Strudel</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$7.35</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Pancakes</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$22.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Ice Cream Sundae</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                </div>
-              </div>
-            </div> <!-- .tab-pane -->
-            <div class="tab-pane fade text-left" id="drinks" role="tabpanel" aria-labelledby="drinks-tab">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$32.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Spring Water</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$14.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Coke, Diet Coke, Coke Zero</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$93.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Orange Fanta</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$18.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Lemonade, Lemon Squash</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$38.35</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Sparkling Mineral Water</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                  <div class="food-menu mb-5">
-                    <span class="d-block text-primary h4 mb-3">$69.00</span>
-                    <h3 class="text-white"><a href="#" class="text-white">Lemon, Lime &amp; Bitters</a></h3>
-                    <p class="text-white text-opacity-7">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                  </div>
-                </div>
-              </div>
-            </div> <!-- .tab-pane -->
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- END section -->
-    <section class="section testimonial-section">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-7">
-            <h2 class="heading" data-aos="fade-up">People Says</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="js-carousel-2 owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
-            
-            <div class="testimonial text-center slider-item">
-              <div class="author-image mb-3">
-                <img src="resources/images/person_1.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-              </div>
-              <blockquote>
-
-                <p>&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; Jean Smith</em></p>
-            </div> 
-
-            <div class="testimonial text-center slider-item">
-              <div class="author-image mb-3">
-                <img src="resources/images/person_2.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-              </div>
-              <blockquote>
-                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; John Doe</em></p>
             </div>
+          </section>
 
-            <div class="testimonial text-center slider-item">
-              <div class="author-image mb-3">
-                <img src="resources/images/person_3.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-              </div>
-              <blockquote>
+         <footer class="section footer-section">
+             <div class="container">
+                 <div class="row mb-4">
+                     <div class="col-md-3 mb-5">
+                         <ul class="list-unstyled link">
+                             <li><a href="/about">Về chúng tôi</a></li>
+                             <li><a href="https://tripadvisor.mediaroom.com/VN-terms-of-use">Điều khoản &amp; Điều kiện</a></li>
+                             <li><a href="https://tripadvisor.mediaroom.com/VN-terms-of-use">Chính sách Riêng tư</a></li>
+                             <li><a href="/rooms">Phòng</a></li>
+                         </ul>
+                     </div>
+                     <div class="col-md-3 mb-5">
+                         <ul class="list-unstyled link">
+                             <li><a href="/rooms">Hệ thống phòng</a></li>
+                             <li><a href="/about">Về chúng tôi</a></li>
+                             <li><a href="/contact">Liên hệ</a></li>
+                             <li><a href="/restaurant">Nhà hàng</a></li>
+                         </ul>
+                     </div>
+                     <div class="col-md-3 mb-5 pr-md-5 contact-info">
+                         <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Địa chỉ:</span> <span>38 Bạch Đằng, <br> Quận Hải Châu, TP. Đà Nẵng, Việt Nam</span></p>
+                         <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Điện thoại:</span> <span>0905 666 888</span></p>
+                         <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span>sogohotel@gmail.com</span></p>
+                     </div>
+                 </div>
+                 <div class="row pt-5">
+                     <p class="col-md-6 text-left">
+                         Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> Bản quyền thuộc về Sogo Hotel </a>
+                     </p>
+                 </div>
+             </div>
+         </footer>
 
-                <p>&ldquo;When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; John Doe</em></p>
-            </div>
-
-
-            <div class="testimonial text-center slider-item">
-              <div class="author-image mb-3">
-                <img src="resources/images/person_1.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-              </div>
-              <blockquote>
-
-                <p>&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; Jean Smith</em></p>
-            </div> 
-
-            <div class="testimonial text-center slider-item">
-              <div class="author-image mb-3">
-                <img src="resources/images/person_2.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-              </div>
-              <blockquote>
-                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; John Doe</em></p>
-            </div>
-
-            <div class="testimonial text-center slider-item">
-              <div class="author-image mb-3">
-                <img src="resources/images/person_3.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-              </div>
-              <blockquote>
-
-                <p>&ldquo;When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.&rdquo;</p>
-              </blockquote>
-              <p><em>&mdash; John Doe</em></p>
-            </div>
-
-          </div>
-            <!-- END slider -->
-        </div>
-
-      </div>
-    </section>
-    
-
-    <section class="section blog-post-entry bg-light">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-7">
-            <h2 class="heading" data-aos="fade-up">Events</h2>
-            <p data-aos="fade-up">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="media media-custom d-block mb-4 h-100">
-              <a href="#" class="mb-4 d-block"><img src="resources/images/img_1.jpg" alt="Image placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="#">Travel Hacks to Make Your Flight More Comfortable</a></h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="200">
-            <div class="media media-custom d-block mb-4 h-100">
-              <a href="#" class="mb-4 d-block"><img src="resources/images/img_2.jpg" alt="Image placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="#">5 Job Types That Aallow You To Earn As You Travel The World</a></h2>
-                <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="300">
-            <div class="media media-custom d-block mb-4 h-100">
-              <a href="#" class="mb-4 d-block"><img src="resources/images/img_3.jpg" alt="Image placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <span class="meta-post">February 26, 2018</span>
-                <h2 class="mt-0 mb-3"><a href="#">30 Great Ideas On Gifts For Travelers</a></h2>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. t is a paradisematic country, in which roasted parts of sentences.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section bg-image overlay" style="background-image: url('resources/images/hero_4.jpg');">
-        <div class="container" >
-          <div class="row align-items-center">
-            <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-              <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
-            </div>
-            <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-              <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    <footer class="section footer-section">
-      <div class="container">
-        <div class="row mb-4">
-          <div class="col-md-3 mb-5">
-            <ul class="list-unstyled link">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Terms &amp; Conditions</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-             <li><a href="#">Rooms</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3 mb-5">
-            <ul class="list-unstyled link">
-              <li><a href="#">The Rooms &amp; Suites</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">Restaurant</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3 mb-5 pr-md-5 contact-info">
-            <!-- <li>198 West 21th Street, <br> Suite 721 New York NY 10016</li> -->
-            <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span> 198 West 21th Street, <br> Suite 721 New York NY 10016</span></p>
-            <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span> (+1) 435 3533</span></p>
-            <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> info@domain.com</span></p>
-          </div>
-          <div class="col-md-3 mb-5">
-            <p>Sign up for our newsletter</p>
-            <form action="#" class="footer-newsletter">
-              <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email...">
-                <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="row pt-5">
-          <p class="col-md-6 text-left">
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          </p>
-            
-          <p class="col-md-6 text-right social">
-            <a href="#"><span class="fa fa-tripadvisor"></span></a>
-            <a href="#"><span class="fa fa-facebook"></span></a>
-            <a href="#"><span class="fa fa-twitter"></span></a>
-            <a href="#"><span class="fa fa-linkedin"></span></a>
-            <a href="#"><span class="fa fa-vimeo"></span></a>
-          </p>
-        </div>
-      </div>
-    </footer>
     
     <script src="resources/js/jquery-3.3.1.min.js"></script>
     <script src="resources/js/jquery-migrate-3.0.1.min.js"></script>

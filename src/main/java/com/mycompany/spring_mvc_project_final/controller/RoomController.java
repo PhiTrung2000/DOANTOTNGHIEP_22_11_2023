@@ -39,6 +39,19 @@ public class RoomController {
         return "rooms";
     }
 
+    @RequestMapping(value = {"/about"}, method = RequestMethod.GET)
+    public String aboutinfomation(Model model, HttpSession session) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = principal.toString();
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+            session.setAttribute("username", username);
+
+        }
+        return "about";
+    }
+
 
     @RequestMapping(value = {"/search/Family"}, method = RequestMethod.GET)
     public String detailfamily(Model model, HttpSession session) {
@@ -50,7 +63,20 @@ public class RoomController {
             session.setAttribute("username", username);
 
         }
-        return "detailfamily";
+        return "detailFamily";
+    }
+
+    @RequestMapping(value = {"/search/Deluxe"}, method = RequestMethod.GET)
+    public String detaildeluxe(Model model, HttpSession session) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = principal.toString();
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+            session.setAttribute("username", username);
+
+        }
+        return "detailDeluxe";
     }
 
     @RequestMapping(value = {"/search/Suite"}, method = RequestMethod.GET)
@@ -63,7 +89,46 @@ public class RoomController {
             session.setAttribute("username", username);
 
         }
-        return "detailsuite";
+        return "detailSuite";
+    }
+
+    @RequestMapping(value = {"/search/Standard"}, method = RequestMethod.GET)
+    public String detailstandard(Model model, HttpSession session) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = principal.toString();
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+            session.setAttribute("username", username);
+
+        }
+        return "detailStandard";
+    }
+
+    @RequestMapping(value = {"/search/Penthouse"}, method = RequestMethod.GET)
+    public String detailpenthouse(Model model, HttpSession session) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = principal.toString();
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+            session.setAttribute("username", username);
+
+        }
+        return "detailPenthouse";
+    }
+
+    @RequestMapping(value = {"/search/VIP"}, method = RequestMethod.GET)
+    public String detailvip(Model model, HttpSession session) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = principal.toString();
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+            session.setAttribute("username", username);
+
+        }
+        return "detailVip";
     }
 
 }

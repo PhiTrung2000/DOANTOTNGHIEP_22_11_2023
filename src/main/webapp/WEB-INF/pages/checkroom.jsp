@@ -102,28 +102,29 @@
             </div>
             <!-- END menu-toggle -->
 
-            <div class="site-navbar js-site-navbar">
+<div class="site-navbar js-site-navbar">
               <nav role="navigation">
                 <div class="container">
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
-                        <li><a href="/">Home</a></li>
-                        <li class="active"><a href="/rooms">Rooms</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="reservation.html">Reservation</a></li>
-                        <li><a href="/dangky">Đăng Ký</a></li>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li class="active"><a href="rooms">Phòng</a></li>
+                        <li><a href="about">Giới Thiệu</a></li>
+                        <li><a href="destination">Điểm Đến</a></li>
+                        <li><a href="contact">Liên Hệ</a></li>
+                        <li><a href="restaurant">Nhà Hàng</a></li>
+                        <li><a href="dangky">Đăng Ký</a></li>
                         <c:if test="${not empty username}">
-                            <li>Welcome, ${username}</li>
-                            <li><a href="/logout">Logout</a></li>
+                            <li style="background-color: #4CAF50; color: #fff; padding: 10px; border-radius: 55px; font-size: 23px; display: inline-block;">Welcome, ${username}</li>
+                            <li><a href="/user/history" target="_blank">Lịch sử đặt phòng</a></li>
+                            <li><a href="logout">Đăng xuất</a></li>
                         </c:if>
                         <c:if test="${empty username}">
-                            <li><a href="/login">Login</a></li>
+                            <li><a href="login">Đăng Nhập</a></li>
                         </c:if>
                         <c:if test="${pageContext.request.userPrincipal != null and pageContext.request.isUserInRole('ROLE_ADMIN')}">
-                            <li><a href="/admin/home">Admin</a></li>
+                            <li><a href="admin/home">Admin</a></li>
                         </c:if>
                       </ul>
                     </div>
@@ -269,71 +270,51 @@
     </section>
 
 
-    <section class="section bg-image overlay" style="background-image: url('images/hero_4.jpg');">
-      <div class="container" >
-        <div class="row align-items-center">
-          <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-            <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
-          </div>
-          <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-            <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <footer class="section footer-section">
-      <div class="container">
-        <div class="row mb-4">
-          <div class="col-md-3 mb-5">
-            <ul class="list-unstyled link">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Terms &amp; Conditions</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-             <li><a href="#">Rooms</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3 mb-5">
-            <ul class="list-unstyled link">
-              <li><a href="#">The Rooms &amp; Suites</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">Restaurant</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3 mb-5 pr-md-5 contact-info">
-            <!-- <li>198 West 21th Street, <br> Suite 721 New York NY 10016</li> -->
-            <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span> 198 West 21th Street, <br> Suite 721 New York NY 10016</span></p>
-            <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span> (+1) 435 3533</span></p>
-            <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> info@domain.com</span></p>
-          </div>
-          <div class="col-md-3 mb-5">
-            <p>Sign up for our newsletter</p>
-            <form action="#" class="footer-newsletter">
-              <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email...">
-                <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>
+            <section class="section bg-image overlay" style="background-image: url('resources/images/hero_4.jpg');">
+            <div class="container" >
+              <div class="row align-items-center">
+                <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
+                  <h2 class="text-white font-weight-bold">Một Địa Điểm Đáng Để Ở. Đặt Ngay !</h2>
+                </div>
+                <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
+                  <a href="/rooms" class="btn btn-outline-white-primary py-3 text-white px-5">Đặt Ngay</a>
+                </div>
               </div>
-            </form>
-          </div>
-        </div>
-        <div class="row pt-5">
-          <p class="col-md-6 text-left">
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          </p>
-            
-          <p class="col-md-6 text-right social">
-            <a href="#"><span class="fa fa-tripadvisor"></span></a>
-            <a href="#"><span class="fa fa-facebook"></span></a>
-            <a href="#"><span class="fa fa-twitter"></span></a>
-            <a href="#"><span class="fa fa-linkedin"></span></a>
-            <a href="#"><span class="fa fa-vimeo"></span></a>
-          </p>
-        </div>
-      </div>
-    </footer>
+            </div>
+          </section>
+
+         <footer class="section footer-section">
+             <div class="container">
+                 <div class="row mb-4">
+                     <div class="col-md-3 mb-5">
+                         <ul class="list-unstyled link">
+                             <li><a href="/about">Về chúng tôi</a></li>
+                             <li><a href="https://tripadvisor.mediaroom.com/VN-terms-of-use">Điều khoản &amp; Điều kiện</a></li>
+                             <li><a href="https://tripadvisor.mediaroom.com/VN-terms-of-use">Chính sách Riêng tư</a></li>
+                             <li><a href="/rooms">Phòng</a></li>
+                         </ul>
+                     </div>
+                     <div class="col-md-3 mb-5">
+                         <ul class="list-unstyled link">
+                             <li><a href="/rooms">Hệ thống phòng</a></li>
+                             <li><a href="/about">Về chúng tôi</a></li>
+                             <li><a href="/contact">Liên hệ</a></li>
+                             <li><a href="/restaurant">Nhà hàng</a></li>
+                         </ul>
+                     </div>
+                     <div class="col-md-3 mb-5 pr-md-5 contact-info">
+                         <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Địa chỉ:</span> <span>38 Bạch Đằng, <br> Quận Hải Châu, TP. Đà Nẵng, Việt Nam</span></p>
+                         <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Điện thoại:</span> <span>0905 666 888</span></p>
+                         <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span>sogohotel@gmail.com</span></p>
+                     </div>
+                 </div>
+                 <div class="row pt-5">
+                     <p class="col-md-6 text-left">
+                         Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> Bản quyền thuộc về Sogo Hotel </a>
+                     </p>
+                 </div>
+             </div>
+         </footer>
     
     <script src="/resources/js/jquery-3.3.1.min.js"></script>
     <script src="/resources/js/jquery-migrate-3.0.1.min.js"></script>

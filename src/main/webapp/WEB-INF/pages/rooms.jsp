@@ -102,25 +102,26 @@
             </div>
             <!-- END menu-toggle -->
 
-            <div class="site-navbar js-site-navbar">
+              <div class="site-navbar js-site-navbar">
               <nav role="navigation">
                 <div class="container">
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
-                        <li><a href="/">Home</a></li>
-                        <li class="active"><a href="rooms.html">Rooms</a></li>
-                        <li><a href="about.jsp">About</a></li>
-                        <li><a href="events.jsp">Events</a></li>
-                        <li><a href="contact.jsp">Contact</a></li>
-                        <li><a href="reservation.jsp">Reservation</a></li>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li class="active"><a href="rooms">Phòng</a></li>
+                        <li><a href="about">Giới Thiệu</a></li>
+                        <li><a href="destination">Điểm đến</a></li>
+                        <li><a href="contact">Liên Hệ</a></li>
+                        <li><a href="restaurant">Nhà Hàng</a></li>
                         <li><a href="dangky">Đăng Ký</a></li>
-                         <c:if test="${not empty username}">
-                            <li>Welcome, ${username}</li>
-                            <li><a href="logout">Logout</a></li>
+                        <c:if test="${not empty username}">
+                            <li style="background-color: #4CAF50; color: #fff; padding: 10px; border-radius: 55px; font-size: 23px; display: inline-block;">Welcome, ${username}</li>
+                            <li><a href="/user/history" target="_blank">Lịch sử đặt phòng</a></li>
+                            <li><a href="logout">Đăng xuất</a></li>
                         </c:if>
                         <c:if test="${empty username}">
-                            <li><a href="login">Login</a></li>
+                            <li><a href="login">Đăng Nhập</a></li>
                         </c:if>
                         <c:if test="${pageContext.request.userPrincipal != null and pageContext.request.isUserInRole('ROLE_ADMIN')}">
                             <li><a href="admin/home">Admin</a></li>
@@ -141,11 +142,11 @@
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade">
-            <h1 class="heading mb-3">Rooms</h1>
+            <h1 class="heading mb-3" style="font-family: 'Roboto', sans-serif;">HỆ THỐNG PHÒNG</h1>
             <ul class="custom-breadcrumbs mb-4">
-              <li><a href="index.jsp">Home</a></li>
+              <li><a href="index.jsp">TRANG CHỦ</a></li>
               <li>&bullet;</li>
-              <li>Rooms</li>
+              <li>PHÒNG</li>
             </ul>
           </div>
         </div>
@@ -168,14 +169,14 @@
                 <form id="availabilityForm" action="/checkAvailability" method="post" onsubmit="return validateForm(event)">
                 <div class="row">
                     <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                        <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
+                        <label for="checkin_date" class="font-weight-bold text-black">Ngày đến</label>
                         <div class="field-icon-wrap">
                             <div class="icon"><span class="icon-calendar"></span></div>
                             <input type="text" id="myDateInput" name="checkin_date" class="form-control" style="background-color: white;">
                         </div>
                     </div>
                     <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                        <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
+                        <label for="checkout_date" class="font-weight-bold text-black">Ngày đi</label>
                         <div class="field-icon-wrap">
                             <div class="icon"><span class="icon-calendar"></span></div>
                             <input type="text" id="myDateOutput" name="checkout_date" class="form-control" style="background-color: white;">
@@ -184,7 +185,7 @@
                     <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
                         <div class="row">
                             <div class="col-md-6 mb-3 mb-md-0">
-                                <label for="adults" class="font-weight-bold text-black">Adults</label>
+                                <label for="adults" class="font-weight-bold text-black">Người lớn</label>
                                 <div class="field-icon-wrap">
                                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                     <select name="adults" id="adults" class="form-control">
@@ -197,7 +198,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3 mb-md-0">
-                                <label for="children" class="font-weight-bold text-black">Children</label>
+                                <label for="children" class="font-weight-bold text-black">Trẻ em</label>
                                 <div class="field-icon-wrap">
                                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                     <select name="children" id="children" class="form-control">
@@ -213,7 +214,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3 align-self-end">
-                        <button type="submit" class="btn btn-primary btn-block text-white">Check Availability</button>
+                        <button type="submit" class="btn btn-primary btn-block text-white">Tìm Phòng</button>
                     </div>
                 </div>
             </form>
@@ -233,7 +234,7 @@
                                 </figure>
                                 <div class="p-3 text-center room-info">
                                     <h2>${room.name}</h2>
-                                    <span class="text-uppercase letter-spacing-1">${room.price} / per night</span>
+                                    <span class="text-uppercase letter-spacing-1">${room.price}$ / 1 Đêm</span>
                                 </div>
                             </a>
                         </div>
@@ -247,98 +248,78 @@
       <div class="container">
         <div class="row justify-content-center text-center mb-5">
           <div class="col-md-7">
-            <h2 class="heading" data-aos="fade">Great Offers</h2>
-            <p data-aos="fade">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+            <h2 class="heading" data-aos="fade">Sự lựa chọn tuyệt vời</h2>
+            <p data-aos="fade">Tìm kiếm một trải nghiệm đặc biệt và đẳng cấp? Hãy khám phá những sự lựa chọn tuyệt vời mà chúng tôi mang đến cho bạn. Với sự kết hợp hoàn hảo giữa sự thoải mái và tiện nghi hiện đại, chúng tôi tự hào giới thiệu đến quý khách hàng một hệ thống phòng lưu trú đẳng cấp, nơi mà mọi chi tiết đều được chăm sóc đến từng centimet</p>
           </div>
         </div>
       
         <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="100">
-          <a href="#" class="image d-block bg-image-2" style="background-image: url('resources/images/img_1.jpg');"></a>
+          <a href="#" class="image d-block bg-image-2" style="background-image: url('resources/images/rooms/Family.jpg');"></a>
           <div class="text">
-            <span class="d-block mb-4"><span class="display-4 text-primary">$199</span> <span class="text-uppercase letter-spacing-2">/ per night</span> </span>
+            <span class="d-block mb-4"><span class="display-4 text-primary">$200</span> <span class="text-uppercase letter-spacing-2">/ 1 Đêm</span> </span>
             <h2 class="mb-4">Family Room</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p><a href="#" class="btn btn-primary text-white">Book Now</a></p>
+            <p>Chào mừng đến với Family Room - sự lựa chọn ưa thích của nhiều gia đình khách hàng chúng tôi! Với không gian thoải mái và những tiện nghi đặc biệt, Family Room là điểm đến lưu trú mà mọi người tin tưởng và lựa chọn</p>
+            <p><a href="/search/Family" class="btn btn-primary text-white">Đặt Ngay</a></p>
           </div>
         </div>
         <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="200">
-          <a href="#" class="image d-block bg-image-2 order-2" style="background-image: url('resources/images/img_2.jpg');"></a>
+          <a href="#" class="image d-block bg-image-2 order-2" style="background-image: url('resources/images/rooms/VIP.jpg');"></a>
           <div class="text order-1">
-            <span class="d-block mb-4"><span class="display-4 text-primary">$299</span> <span class="text-uppercase letter-spacing-2">/ per night</span> </span>
-            <h2 class="mb-4">Presidential Room</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p><a href="#" class="btn btn-primary text-white">Book Now</a></p>
+            <span class="d-block mb-4"><span class="display-4 text-primary">$300</span> <span class="text-uppercase letter-spacing-2">/ 1 Đêm</span> </span>
+            <h2 class="mb-4">VIP Room</h2>
+            <p>Chào mừng đến với VIP Room - nơi đặc quyền và sang trọng, được nhiều khách hàng VIP lựa chọn. VIP Room của chúng tôi không chỉ mang lại không gian riêng tư mà còn kết hợp với những tiện nghi đẳng cấp</p>
+            <p><a href="/search/VIP" class="btn btn-primary text-white">Đặt Ngay</a></p>
           </div>
         </div>
 
       </div>
     </section>
 
-    <section class="section bg-image overlay" style="background-image: url('resources/images/hero_4.jpg');">
-      <div class="container" >
-        <div class="row align-items-center">
-          <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-            <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
-          </div>
-          <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-            <a href="reservation.jsp" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <footer class="section footer-section">
-      <div class="container">
-        <div class="row mb-4">
-          <div class="col-md-3 mb-5">
-            <ul class="list-unstyled link">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Terms &amp; Conditions</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-             <li><a href="#">Rooms</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3 mb-5">
-            <ul class="list-unstyled link">
-              <li><a href="#">The Rooms &amp; Suites</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">Restaurant</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3 mb-5 pr-md-5 contact-info">
-            <!-- <li>198 West 21th Street, <br> Suite 721 New York NY 10016</li> -->
-            <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span> 198 West 21th Street, <br> Suite 721 New York NY 10016</span></p>
-            <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span> (+1) 435 3533</span></p>
-            <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> info@domain.com</span></p>
-          </div>
-          <div class="col-md-3 mb-5">
-            <p>Sign up for our newsletter</p>
-            <form action="#" class="footer-newsletter">
-              <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email...">
-                <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>
+            <section class="section bg-image overlay" style="background-image: url('resources/images/hero_4.jpg');">
+            <div class="container" >
+              <div class="row align-items-center">
+                <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
+                  <h2 class="text-white font-weight-bold">Một Địa Điểm Đáng Để Ở. Đặt Ngay !</h2>
+                </div>
+                <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
+                  <a href="/rooms" class="btn btn-outline-white-primary py-3 text-white px-5">Đặt Ngay</a>
+                </div>
               </div>
-            </form>
-          </div>
-        </div>
-        <div class="row pt-5">
-          <p class="col-md-6 text-left">
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          </p>
-            
-          <p class="col-md-6 text-right social">
-            <a href="#"><span class="fa fa-tripadvisor"></span></a>
-            <a href="#"><span class="fa fa-facebook"></span></a>
-            <a href="#"><span class="fa fa-twitter"></span></a>
-            <a href="#"><span class="fa fa-linkedin"></span></a>
-            <a href="#"><span class="fa fa-vimeo"></span></a>
-          </p>
-        </div>
-      </div>
-    </footer>
+            </div>
+          </section>
+
+         <footer class="section footer-section">
+             <div class="container">
+                 <div class="row mb-4">
+                     <div class="col-md-3 mb-5">
+                         <ul class="list-unstyled link">
+                             <li><a href="/about">Về chúng tôi</a></li>
+                             <li><a href="https://tripadvisor.mediaroom.com/VN-terms-of-use">Điều khoản &amp; Điều kiện</a></li>
+                             <li><a href="https://tripadvisor.mediaroom.com/VN-terms-of-use">Chính sách Riêng tư</a></li>
+                             <li><a href="/rooms">Phòng</a></li>
+                         </ul>
+                     </div>
+                     <div class="col-md-3 mb-5">
+                         <ul class="list-unstyled link">
+                             <li><a href="/rooms">Hệ thống phòng</a></li>
+                             <li><a href="/about">Về chúng tôi</a></li>
+                             <li><a href="/contact">Liên hệ</a></li>
+                             <li><a href="/restaurant">Nhà hàng</a></li>
+                         </ul>
+                     </div>
+                     <div class="col-md-3 mb-5 pr-md-5 contact-info">
+                         <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Địa chỉ:</span> <span>38 Bạch Đằng, <br> Quận Hải Châu, TP. Đà Nẵng, Việt Nam</span></p>
+                         <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Điện thoại:</span> <span>0905 666 888</span></p>
+                         <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span>sogohotel@gmail.com</span></p>
+                     </div>
+                 </div>
+                 <div class="row pt-5">
+                     <p class="col-md-6 text-left">
+                         Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> Bản quyền thuộc về Sogo Hotel </a>
+                     </p>
+                 </div>
+             </div>
+         </footer>
     
     <script src="resources/js/jquery-3.3.1.min.js"></script>
     <script src="resources/js/jquery-migrate-3.0.1.min.js"></script>
@@ -381,7 +362,6 @@
                  minDate: "today",
                 onChange: function (selectedDates, dateStr, instance) {
                     var checkInInput = document.getElementById("myDateInput");
-
                     // Kiểm tra nếu ngày Check Out trước ngày Check In
                     if (flatpickr.parseDate(dateStr, "d-m-Y") <= flatpickr.parseDate(checkInInput.value, "d-m-Y")) {
                         alert("Ngày đi không hợp lệ. Vui lòng chọn lại");
