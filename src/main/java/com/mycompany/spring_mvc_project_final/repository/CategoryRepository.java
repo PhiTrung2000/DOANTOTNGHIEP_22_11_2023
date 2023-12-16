@@ -16,5 +16,7 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Intege
     Long findCategoryIdByName(@Param("categoryName") String categoryName);
 
     CategoryEntity findByName(String name);
+
+    List<CategoryEntity> findByNameContaining(String searchCate);
 }
 

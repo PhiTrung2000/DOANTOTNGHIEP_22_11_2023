@@ -50,19 +50,19 @@
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
                         <li><a href="/">Trang chủ</a></li>
-                        <li class="active"><a href="rooms">Phòng</a></li>
-                        <li><a href="about">Giới Thiệu</a></li>
-                        <li><a href="destination">Điểm đến</a></li>
-                        <li><a href="contact">Liên Hệ</a></li>
-                        <li><a href="restaurant">Nhà Hàng</a></li>
-                        <li><a href="dangky">Đăng Ký</a></li>
+                        <li class="active"><a href="/rooms">Phòng</a></li>
+                        <li><a href="/about">Giới Thiệu</a></li>
+                        <li><a href="/destination">Điểm đến</a></li>
+                        <li><a href="/contact">Liên Hệ</a></li>
+                        <li><a href="/restaurant">Nhà Hàng</a></li>
+                        <li><a href="/dangky">Đăng Ký</a></li>
                         <c:if test="${not empty username}">
                             <li style="background-color: #4CAF50; color: #fff; padding: 10px; border-radius: 55px; font-size: 23px; display: inline-block;">Welcome, ${username}</li>
                             <li><a href="/user/history" target="_blank">Lịch sử đặt phòng</a></li>
-                            <li><a href="logout">Đăng xuất</a></li>
+                            <li><a href="/logout">Đăng xuất</a></li>
                         </c:if>
                         <c:if test="${empty username}">
-                            <li><a href="login">Đăng Nhập</a></li>
+                            <li><a href="/login">Đăng Nhập</a></li>
                         </c:if>
                         <c:if test="${pageContext.request.userPrincipal != null and pageContext.request.isUserInRole('ROLE_ADMIN')}">
                             <li><a href="admin/home">Admin</a></li>
@@ -78,11 +78,11 @@
       </div>
     </header>
 
-    <section class="site-hero inner-page overlay" style="background-image: url('/resources/images/hero_4.jpg')" data-stellar-background-ratio="0.5">
+    <section class="site-hero inner-page overlay" style="background-image: url('/resources/images/hero_4.jpg');" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade">
-            <h1 class="heading mb-3">Hệ Thống Phòng</h1>
+            <h1 class="heading mb-3" style="font-family: 'Roboto', sans-serif;">Hệ Thống Phòng</h1>
             <ul class="custom-breadcrumbs mb-4">
               <li><a href="index.jsp">Trang Chủ</a></li>
               <li>&bullet;</li>
@@ -135,7 +135,7 @@
             </div>
           </section>
 
-            <section class="section bg-image overlay" style="background-image: url('resources/images/hero_4.jpg');">
+            <section class="section bg-image overlay" style="background-image: url('/resources/images/hero_4.jpg');">
             <div class="container" >
               <div class="row align-items-center">
                 <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">

@@ -109,19 +109,19 @@
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
                         <li><a href="/">Trang chủ</a></li>
-                        <li class="active"><a href="rooms">Phòng</a></li>
-                        <li><a href="about">Giới Thiệu</a></li>
-                        <li><a href="destination">Điểm Đến</a></li>
-                        <li><a href="contact">Liên Hệ</a></li>
-                        <li><a href="restaurant">Nhà Hàng</a></li>
-                        <li><a href="dangky">Đăng Ký</a></li>
+                        <li class="active"><a href="/rooms">Phòng</a></li>
+                        <li><a href="/about">Giới Thiệu</a></li>
+                        <li><a href="/destination">Điểm đến</a></li>
+                        <li><a href="/contact">Liên Hệ</a></li>
+                        <li><a href="/restaurant">Nhà Hàng</a></li>
+                        <li><a href="/dangky">Đăng Ký</a></li>
                         <c:if test="${not empty username}">
                             <li style="background-color: #4CAF50; color: #fff; padding: 10px; border-radius: 55px; font-size: 23px; display: inline-block;">Welcome, ${username}</li>
                             <li><a href="/user/history" target="_blank">Lịch sử đặt phòng</a></li>
-                            <li><a href="logout">Đăng xuất</a></li>
+                            <li><a href="/logout">Đăng xuất</a></li>
                         </c:if>
                         <c:if test="${empty username}">
-                            <li><a href="login">Đăng Nhập</a></li>
+                            <li><a href="/login">Đăng Nhập</a></li>
                         </c:if>
                         <c:if test="${pageContext.request.userPrincipal != null and pageContext.request.isUserInRole('ROLE_ADMIN')}">
                             <li><a href="admin/home">Admin</a></li>
@@ -151,11 +151,11 @@
           <div class="container">
             <div class="row site-hero-inner justify-content-center align-items-center">
               <div class="col-md-10 text-center" data-aos="fade">
-                <h1 class="heading mb-3">Rooms</h1>
+                <h1 class="heading mb-3" style="font-family: 'Roboto', sans-serif;">Phòng</h1>
                 <ul class="custom-breadcrumbs mb-4">
-                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.html">Trang chủ</a></li>
                   <li>&bullet;</li>
-                  <li>Rooms</li>
+                  <li>Phòng</li>
                 </ul>
               </div>
             </div>
@@ -178,14 +178,14 @@
                 <form id="availabilityForm" action="/user/booking/${categoryName}" method="get" onsubmit="return validateForm(event)">
                 <div class="row">
                     <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                        <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
+                        <label for="checkin_date" class="font-weight-bold text-black">Ngày đến</label>
                         <div class="field-icon-wrap">
                             <div class="icon"><span class="icon-calendar"></span></div>
                             <input type="text" id="myDateInput" name="checkinDate" class="form-control" style="background-color: white;">
                         </div>
                     </div>
                     <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                        <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
+                        <label for="checkout_date" class="font-weight-bold text-black">Ngày đi</label>
                         <div class="field-icon-wrap">
                             <div class="icon"><span class="icon-calendar"></span></div>
                             <input type="text" id="myDateOutput" name="checkoutDate" class="form-control" style="background-color: white;">
@@ -194,7 +194,7 @@
                     <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
                         <div class="row">
                             <div class="col-md-6 mb-3 mb-md-0">
-                                <label for="adults" class="font-weight-bold text-black">Adults</label>
+                                <label for="adults" class="font-weight-bold text-black">Người lớn</label>
                                 <div class="field-icon-wrap">
                                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                     <select name="adults" id="adults" class="form-control">
@@ -207,7 +207,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3 mb-md-0">
-                                <label for="children" class="font-weight-bold text-black">Children</label>
+                                <label for="children" class="font-weight-bold text-black">Trẻ em</label>
                                 <div class="field-icon-wrap">
                                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                     <select name="children" id="children" class="form-control">
@@ -270,7 +270,7 @@
     </section>
 
 
-            <section class="section bg-image overlay" style="background-image: url('resources/images/hero_4.jpg');">
+            <section class="section bg-image overlay" style="background-image: url('/resources/images/hero_4.jpg');">
             <div class="container" >
               <div class="row align-items-center">
                 <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">

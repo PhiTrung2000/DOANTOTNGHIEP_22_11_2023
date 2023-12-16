@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Đăng Nhập</title>
+	<title>Quên mật khẩu</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -33,21 +33,16 @@
 					<img src="/resources/login/images/img-01.png" alt="IMG">
 				</div>
 
-				<form action="<c:url value='/j_spring_security_check'/>" method="post">
+				<form action="/confirmEmail" method="post">
                     <span class="login100-form-title" style="font-family: 'Roboto', sans-serif; font-size: 1.5em; font-weight: bold; color: #333;">
-                        Đăng nhập thành viên
+                        NHẬP MÃ XÁC THỰC
+                        <span class="login100-form-title" style="font-family: 'Roboto', sans-serif; font-size: 0.6em; font-weight: bold; color: #333;">
+                             Mã xác thực vừa gửi vào email của bạn
+                        </span>
                     </span>
 
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="username" placeholder="Email">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </span>
-                    </div>
-
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password" placeholder="Password">
+                        <input class="input100" type="text" name="code" placeholder="Code">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
@@ -56,16 +51,20 @@
 
                     <div class="container-login100-form-btn">
                         <button type="submit" class="login100-form-btn">
-                           Đăng nhập
+                           Xác thực thông tin
                         </button>
-                    </div>
+                    </div> </br>
+                    <p style="color: red; font-family: 'Roboto', sans-serif; font-size: 0.9em; font-weight: bold; margin-left: 60px;">${errorCode}</p>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="text-center p-t-12">
-                        <span class="txt1">
-                            Quên
-                        </span>
-                        <a class="txt2" href="/forgotPassword">
-                            Username / Password?
+                        <a class="txt2" href="/login">
+                            Return Login
+                        </a>
+                    </div>
+
+                    <div class="text-center p-t-12">
+                        <a class="txt2" href="/confirmEmail">
+                            Resend code
                         </a>
                     </div>
 
