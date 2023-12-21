@@ -1,11 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sogo Hotel by Colorlib.com</title>
+    <title>Sogo Hotel</title>
+    <link rel="icon" type="image/png" href="/resources/images/icon_logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -91,7 +93,11 @@
     <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.jsp">Sogo Hotel</a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade">
+              <a href="/">
+                  <img src="resources/images/logo_hotel_1.png" width="200" height="40">
+              </a>
+        </div>
           <div class="col-6 col-lg-8">
 
 
@@ -111,7 +117,7 @@
                         <li><a href="/">Trang chủ</a></li>
                         <li class="active"><a href="rooms">Phòng</a></li>
                         <li><a href="about">Giới Thiệu</a></li>
-                        <li><a href="destination">Điểm đến</a></li>
+                        <li><a href="destination">Điểm Đến</a></li>
                         <li><a href="contact">Liên Hệ</a></li>
                         <li><a href="restaurant">Nhà Hàng</a></li>
                         <li><a href="dangky">Đăng Ký</a></li>
@@ -144,7 +150,7 @@
           <div class="col-md-10 text-center" data-aos="fade">
             <h1 class="heading mb-3" style="font-family: 'Roboto', sans-serif;">Hệ Thống Phòng</h1>
             <ul class="custom-breadcrumbs mb-4">
-              <li><a href="index.jsp">TRANG CHỦ</a></li>
+              <li><a href="/">TRANG CHỦ</a></li>
               <li>&bullet;</li>
               <li>PHÒNG</li>
             </ul>
@@ -234,7 +240,7 @@
                                 </figure>
                                 <div class="p-3 text-center room-info">
                                     <h2>${room.name}</h2>
-                                    <span class="text-uppercase letter-spacing-1">${room.price}$ / 1 Đêm</span>
+                                    <span class="text-uppercase letter-spacing-1">$${fn:replace(room.price, '.0', '')} / 1 Đêm</span>
                                 </div>
                             </a>
                         </div>

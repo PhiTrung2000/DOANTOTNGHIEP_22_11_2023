@@ -17,19 +17,23 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="/resources/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="/resources/assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="/resources/assets/images/logoSogo.png" />
   </head>
   <body>
     <div class="container-scroller">
       <!-- partial:../../partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                      <a class="navbar-brand brand-logo" href="home"><img src="/resources/assets/images/SogoHotel.png" alt="logo" /></a>
+                      <a class="navbar-brand brand-logo-mini" href="home"><img src="/resources/assets/images/logoSogo.png" alt="logo" style="width: 30px; height: 30px;" /></a>
+                    </div>
               <div class="navbar-menu-wrapper d-flex align-items-stretch">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                   <span class="mdi mdi-menu"></span>
                 </button>
                 <ul class="navbar-nav navbar-nav-right">
                   <li class="nav-item nav-profile dropdown">
-                    <a class="nav-link dropdown-toggle" id="profileDropdown" href="home" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" id="profileDropdown" href="/admin/home" data-bs-toggle="dropdown" aria-expanded="false">
                       <div class="nav-profile-img">
                         <img src="/resources/assets/images/faces/face1.jpg" alt="image">
                         <span class="availability-status online"></span>
@@ -56,7 +60,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item nav-profile">
-              <a href="home" class="nav-link">
+              <a href="/admin/home" class="nav-link">
                 <div class="nav-profile-image">
                   <img src="/resources/assets/images/faces/face1.jpg" alt="profile">
                   <span class="login-status online"></span>
@@ -70,7 +74,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="home">
+              <a class="nav-link" href="/admin/home">
                 <span class="menu-title">Trang Chủ</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
@@ -83,11 +87,11 @@
               </a>
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="roomMain">Thông Tin Phòng</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="addRoom">Thêm Phòng</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="inforRoom">Thông tin Loại Phòng</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="addCateRoom">Thêm Loại Phòng</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="inforBookingDT">Thông tin Đặt Phòng</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/roomMain">Thông Tin Phòng</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/addRoom">Thêm Phòng</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/inforRoom">Thông tin Loại Phòng</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/addCateRoom">Thêm Loại Phòng</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/inforBookingDT">Thông tin Đặt Phòng</a></li>
                 </ul>
               </div>
             </li>
@@ -99,7 +103,7 @@
               </a>
               <div class="collapse" id="user-manage">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="inforUser">Thông tin người dùng</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/admin/inforUser">Thông tin người dùng</a></li>
                   <li class="nav-item"> <a class="nav-link" href="/dangky">Thêm người dùng</a></li>
                 </ul>
               </div>
@@ -112,13 +116,13 @@
               </a>
               <div class="collapse" id="discount-manage">
                  <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="addDiscount">Thêm Khuyến Mãi</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="inforDiscount">Thông tin Khuyến Mãi</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/addDiscount">Thêm Khuyến Mãi</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/admin/inforDiscount">Thông tin Khuyến Mãi</a></li>
                  </ul>
               </div>
             </li>
             <li class="nav-item">
-                 <a class="nav-link" href="totalpayment">
+                 <a class="nav-link" href="/admin/totalpayment">
                     <span class="menu-title">Báo Cáo Doanh Thu</span>
                  </a>
             </li>

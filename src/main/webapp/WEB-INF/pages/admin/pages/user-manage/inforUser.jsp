@@ -19,7 +19,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="/resources/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="/resources/assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="/resources/assets/images/logoSogo.png" />
   </head>
   <style>
         .card-body {
@@ -37,6 +37,10 @@
     <div class="container-scroller">
       <!-- partial:../../partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                      <a class="navbar-brand brand-logo" href="home"><img src="/resources/assets/images/SogoHotel.png" alt="logo" /></a>
+                      <a class="navbar-brand brand-logo-mini" href="home"><img src="/resources/assets/images/logoSogo.png" alt="logo" style="width: 30px; height: 30px;" /></a>
+                    </div>
               <div class="navbar-menu-wrapper d-flex align-items-stretch">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                   <span class="mdi mdi-menu"></span>
@@ -144,13 +148,13 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Room Search</h2>
+                        <h2 class="text-center">Thông Tin Người Dùng</h2>
                     </div>
                     <div class="card-body">
-                        <form action="searchResult.jsp" method="get">
+                        <form action="searchUser" method="post">
                             <div class="form-group">
-                                <label for="searchQuery">Enter your search query:</label>
-                                <input type="text" class="form-control" id="searchQuery" name="query" required>
+                                <label for="searchUser">Nhập Email:</label>
+                                <input type="text" class="form-control" id="searchUser" name="searchUser" style="width:800px" required>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Search</button>
@@ -167,6 +171,7 @@
                                     <th>Giới tính</th>
                                     <th>Tên</th>
                                     <th>Số điện thoại</th>
+                                    <th>Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -6,7 +6,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sogo Hotel by Colorlib.com</title>
+    <title>Sogo Hotel</title>
+    <link rel="icon" type="image/png" href="/resources/images/icon_logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -33,7 +34,11 @@
     <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.html">Sogo Hotel</a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade">
+              <a href="/">
+                  <img src="resources/images/logo_hotel_1.png" width="200" height="40">
+              </a>
+        </div>
           <div class="col-6 col-lg-8">
 
 
@@ -245,25 +250,25 @@
           <div class="col-md-12">
             <div class="home-slider major-caousel owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
               <div class="slider-item">
-                <a href="images/slider-1.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="resources/images/slider-1.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-1.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="images/slider-2.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-2.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="resources/images/slider-2.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-2.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="images/slider-3.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-3.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="resources/images/slider-3.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-3.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="images/slider-4.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-4.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="resources/images/slider-4.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-4.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="images/slider-5.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-5.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="resources/images/slider-5.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-5.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="images/slider-6.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-6.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="resources/images/slider-6.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-6.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="images/slider-7.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-7.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="resources/images/slider-7.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-7.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
             </div>
             <!-- END slider -->

@@ -29,7 +29,8 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             @Param("checkinDate") Date checkinDate,
             @Param("checkoutDate") Date checkoutDate,
             @Param("categoryName") String categoryName);
-
+    long count();
+    List<RoomEntity> findByNameContaining(String searchRoom);
 }
 
 

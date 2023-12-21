@@ -12,6 +12,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface AccountRepository extends CrudRepository<AccountEntity, Long> {
 
@@ -21,5 +23,6 @@ public interface AccountRepository extends CrudRepository<AccountEntity, Long> {
     AccountEntity findByEmail(String email);
     @Query("SELECT a.id FROM AccountEntity a WHERE a.email = :email")
     Long findAccountIdByEmail(@Param("email") String email);
+    List<AccountEntity> findByEmailContaining(String searchUser);
     
 }

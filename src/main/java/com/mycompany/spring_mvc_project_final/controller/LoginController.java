@@ -5,6 +5,9 @@
  */
 package com.mycompany.spring_mvc_project_final.controller;
 
+import com.mycompany.spring_mvc_project_final.repository.CategoryRepository;
+import com.mycompany.spring_mvc_project_final.repository.RoomRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,10 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
+    @Autowired
+    private CategoryRepository categoryRepository;
+    @Autowired
+    private RoomRepository roomRepository;
 
     @RequestMapping("/login")
     public String loginPage(Model model, @RequestParam(value = "error", required = false) boolean error) {
@@ -34,8 +41,11 @@ public class LoginController {
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
         }
-
+        Long categoryQuantity = categoryRepository.count();
+        Long roomQuantity = roomRepository.count();
         model.addAttribute("message", "Hello Admin: " + username);
+        model.addAttribute("categoryQuantity",categoryQuantity);
+        model.addAttribute("roomQuantity",roomQuantity);
         return "admin/home";
     }
 

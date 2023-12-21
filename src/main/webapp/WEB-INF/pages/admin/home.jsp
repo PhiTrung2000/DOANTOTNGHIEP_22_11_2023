@@ -17,12 +17,16 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="/resources/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="/resources/assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="/resources/assets/images/logoSogo.png" />
   </head>
   <body>
     <div class="container-scroller">
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo" href="home"><img src="/resources/assets/images/SogoHotel.png" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="home"><img src="/resources/assets/images/logoSogo.png" alt="logo" style="width: 30px; height: 30px;" /></a>
+              </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
@@ -141,7 +145,7 @@
                     <img src="/resources/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Số Lượng Phòng <i class="mdi mdi-chart-line mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5">${countRoom}</h2>
+                    <h2 class="mb-5">${roomQuantity}</h2>
                   </div>
                 </div>
               </div>
@@ -151,7 +155,7 @@
                     <img src="/resources/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Số Lượng Loại Phòng <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5">${countCate}</h2>
+                    <h2 class="mb-5">${categoryQuantity}</h2>
                   </div>
                 </div>
               </div>

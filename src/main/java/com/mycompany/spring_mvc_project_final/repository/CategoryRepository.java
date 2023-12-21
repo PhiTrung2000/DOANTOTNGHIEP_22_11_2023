@@ -18,5 +18,6 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Intege
     CategoryEntity findByName(String name);
 
     List<CategoryEntity> findByNameContaining(String searchCate);
+    long count();
 }
 

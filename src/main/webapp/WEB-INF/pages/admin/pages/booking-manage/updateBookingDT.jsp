@@ -17,7 +17,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="/resources/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="/resources/assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="/resources/assets/images/logoSogo.png" />
     <!-- Thư viện Flatpickr từ CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -32,7 +32,7 @@
                 </button>
                 <ul class="navbar-nav navbar-nav-right">
                   <li class="nav-item nav-profile dropdown">
-                    <a class="nav-link dropdown-toggle" id="profileDropdown" href="home" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" id="profileDropdown" href="/admin/home" data-bs-toggle="dropdown" aria-expanded="false">
                       <div class="nav-profile-img">
                         <img src="/resources/assets/images/faces/face1.jpg" alt="image">
                         <span class="availability-status online"></span>
@@ -59,7 +59,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
                   <ul class="nav">
                     <li class="nav-item nav-profile">
-                      <a href="home" class="nav-link">
+                      <a href="/admin/home" class="nav-link">
                         <div class="nav-profile-image">
                           <img src="/resources/assets/images/faces/face1.jpg" alt="profile">
                           <span class="login-status online"></span>
@@ -73,7 +73,7 @@
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="home">
+                      <a class="nav-link" href="/admin/home">
                         <span class="menu-title">Trang Chủ</span>
                         <i class="mdi mdi-home menu-icon"></i>
                       </a>
@@ -86,11 +86,11 @@
                       </a>
                       <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                          <li class="nav-item"> <a class="nav-link" href="roomMain">Thông Tin Phòng</a></li>
-                          <li class="nav-item"> <a class="nav-link" href="addRoom">Thêm Phòng</a></li>
-                          <li class="nav-item"> <a class="nav-link" href="inforRoom">Thông tin Loại Phòng</a></li>
-                          <li class="nav-item"> <a class="nav-link" href="addCateRoom">Thêm Loại Phòng</a></li>
-                          <li class="nav-item"> <a class="nav-link" href="inforBookingDT">Thông tin Đặt Phòng</a></li>
+                          <li class="nav-item"> <a class="nav-link" href="/admin/roomMain">Thông Tin Phòng</a></li>
+                          <li class="nav-item"> <a class="nav-link" href="/admin/addRoom">Thêm Phòng</a></li>
+                          <li class="nav-item"> <a class="nav-link" href="/admin/inforRoom">Thông tin Loại Phòng</a></li>
+                          <li class="nav-item"> <a class="nav-link" href="/admin/addCateRoom">Thêm Loại Phòng</a></li>
+                          <li class="nav-item"> <a class="nav-link" href="/admin/inforBookingDT">Thông tin Đặt Phòng</a></li>
                         </ul>
                       </div>
                     </li>
@@ -102,7 +102,7 @@
                       </a>
                       <div class="collapse" id="user-manage">
                         <ul class="nav flex-column sub-menu">
-                          <li class="nav-item"> <a class="nav-link" href="inforUser">Thông tin người dùng</a></li>
+                          <li class="nav-item"> <a class="nav-link" href="/admin/inforUser">Thông tin người dùng</a></li>
                           <li class="nav-item"> <a class="nav-link" href="/dangky">Thêm người dùng</a></li>
                         </ul>
                       </div>
@@ -115,20 +115,19 @@
                       </a>
                       <div class="collapse" id="discount-manage">
                          <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="addDiscount">Thêm Khuyến Mãi</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="inforDiscount">Thông tin Khuyến Mãi</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/admin/addDiscount">Thêm Khuyến Mãi</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/admin/inforDiscount">Thông tin Khuyến Mãi</a></li>
                          </ul>
                       </div>
                     </li>
                     <li class="nav-item">
-                         <a class="nav-link" href="totalpayment">
+                         <a class="nav-link" href="/admin/totalpayment">
                             <span class="menu-title">Báo Cáo Doanh Thu</span>
                          </a>
                     </li>
                   </ul>
                 </nav>
         <!-- partial -->
-        <p>${pageContext.request.contextPath} ooooo<p>
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
@@ -149,11 +148,11 @@
                       <input type="hidden" class="form-control" id="id" name="id" value="${id}">
                       <div class="form-group">
                         <label for="checkinDate">Ngày đến</label>
-                        <input type="text" class="form-control" id="checkinDat" name="checkinDate" placeholder="Ngày đến" value=${bookingdt.checkinDate} required >
+                        <input type="text" class="form-control" id="checkinDate" name="checkinDate" placeholder="Ngày đến" value=${bookingdt.checkinDate} required >
                       </div>
                       <div class="form-group">
                         <label for="checkoutDate">Ngày đi</label>
-                        <input type="text" class="form-control" id="checkoutDat" name="checkoutDate" placeholder="Ngày đi" value=${bookingdt.checkoutDate} required >
+                        <input type="text" class="form-control" id="checkoutDate" name="checkoutDate" placeholder="Ngày đi" value=${bookingdt.checkoutDate} required >
                       </div>
                       <div class="form-group">
                           <label for="numOfAdult">Số người lớn</label>
@@ -225,13 +224,13 @@
 
             // Khởi tạo Flatpickr cho trường input
             flatpickr(checkinDateInput, {
-                dateFormat: 'd-m-Y', // Định dạng ngày 'dd/MM/yyyy'
+                dateFormat: 'Y-m-d', // Định dạng ngày 'dd/MM/yyyy'
                 allowInput: true, // Cho phép người dùng nhập giá trị bằng tay
                 defaultDate: new Date('${bookingdt.checkinDate}'),
             });
             // Khởi tạo Flatpickr cho trường output
             flatpickr(checkoutDateInput, {
-                dateFormat: 'd-m-Y', // Định dạng ngày 'dd/MM/yyyy'
+                dateFormat: 'Y-m-d', // Định dạng ngày 'dd/MM/yyyy'
                 allowInput: true, // Cho phép người dùng nhập giá trị bằng tay
                 defaultDate: new Date('${bookingdt.checkoutDate}'),
             });

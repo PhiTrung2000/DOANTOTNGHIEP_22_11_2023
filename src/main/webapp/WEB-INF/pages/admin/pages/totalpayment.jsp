@@ -23,7 +23,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="/resources/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="/resources/assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="/resources/assets/images/logoSogo.png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -32,6 +32,10 @@
     <div class="container-scroller">
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                      <a class="navbar-brand brand-logo" href="home"><img src="/resources/assets/images/SogoHotel.png" alt="logo" /></a>
+                      <a class="navbar-brand brand-logo-mini" href="home"><img src="/resources/assets/images/logoSogo.png" alt="logo" style="width: 30px; height: 30px;" /></a>
+                    </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
@@ -135,18 +139,18 @@
         </nav>
         <!-- partial -->
         <div class="container">
-            <h2 class="mt-4">BÁO CÁO DOANH THU</h2>
+            <h2 style="text-align: center;" class="mt-4">BÁO CÁO DOANH THU</h2>
 
             <form id="totalForm" action="/admin/totalpaymentfilters" method="post" class="mt-4">
                 <div class="row">
                     <div class="col-md-3">
                         <label for="startDate" class="form-label">Ngày bắt đầu:</label>
-                        <input type="text" id="startDate" name="startDate" class="form-control datepicker">
+                        <input style="background-color:white" type="text" id="startDate" name="startDate" class="form-control datepicker">
                     </div>
 
                     <div class="col-md-3">
                         <label for="endDate" class="form-label">Ngày kết thúc:</label>
-                        <input type="text" id="endDate" name="endDate" class="form-control datepicker">
+                        <input style="background-color:white" type="text" id="endDate" name="endDate" class="form-control datepicker">
                     </div>
 
                     <div class="col-md-2 align-self-end">
@@ -158,16 +162,16 @@
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead class="thead-dark">
-                                <tr>
-                                   <th>Mã thanh toán</th>
-                                   <th>Khách hàng</th>
+                                <tr class="text-center">
+                                   <th style="width:30px">Mã thanh toán</th>
+                                   <th style="width:300px">Khách hàng</th>
                                    <th>Ngày thanh toán</th>
                                    <th>Số tiền thanh toán</th>
                                 </tr>
                             </thead>
                             <tbody>
                             <c:forEach var="payment" items="${filteredPayments}">
-                                <tr>
+                                <tr class="text-center">
                                     <td>${payment.id}</td>
                                     <td>${payment.name}</td>
                                     <td><fmt:formatDate value="${payment.date}" pattern="dd-MM-yyyy" /></td>

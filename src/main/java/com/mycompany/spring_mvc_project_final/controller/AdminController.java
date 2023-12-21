@@ -85,6 +85,17 @@ public class AdminController {
         return "redirect:/admin/inforRoom";
     }
     // Phòng
+    @RequestMapping(value = "/admin/searchRoom", method = POST)
+    public String searchRoom (@RequestParam("searchRoom") String searchRoom, Model model){
+        List<RoomEntity> roomEntityList;
+        if (searchRoom.isEmpty()){
+            roomEntityList = (List<RoomEntity>)roomRepository.findAll();
+        }else {
+            roomEntityList = roomRepository.findByNameContaining(searchRoom);
+        }
+        model.addAttribute("list", roomEntityList);
+        return "admin/pages/room-manage/roomMain";
+    }
     @RequestMapping(value = {"/admin/roomMain"}, method = GET)
     public String pageRoom(Model model) {
         List<RoomEntity> list  = (List<RoomEntity>)roomRepository.findAll();
@@ -127,7 +138,19 @@ public class AdminController {
         roomRepository.deleteById(id);
         return "redirect:/admin/roomMain";
     }
+
     // User
+    @RequestMapping(value = "/admin/searchUser", method = POST)
+    public String searchUser (@RequestParam("searchUser") String searchUser, Model model){
+        List<AccountEntity> accountEntities;
+        if (searchUser.isEmpty()){
+            accountEntities = (List<AccountEntity>) accountRepository.findAll();
+        }else {
+            accountEntities = accountRepository.findByEmailContaining(searchUser);
+        }
+        model.addAttribute("listUser", accountEntities);
+        return "admin/pages/user-manage/inforUser";
+    }
     @RequestMapping(value = {"/admin/addUser"}, method = GET)
     public String addUser(Model model) {
         List<AccountEntity> account  = (List<AccountEntity>)accountRepository.findAll();
@@ -166,6 +189,17 @@ public class AdminController {
     }
 
     //Discount
+    @RequestMapping(value = "/admin/searchDC", method = POST)
+    public String searchDC (@RequestParam("searchDC") String searchDC, Model model){
+        List<DiscountEntity> discountEntities;
+        if (searchDC.isEmpty()){
+            discountEntities = (List<DiscountEntity>)discountRepository.findAll();
+        }else {
+            discountEntities = discountRepository.findByNameContaining(searchDC);
+        }
+        model.addAttribute("listDiscount", discountEntities);
+        return "admin/pages/discount-manage/inforDiscount";
+    }
     @RequestMapping(value = {"/admin/addDiscount"}, method = GET)
     public String pageDiscount(Model model) {
         model.addAttribute("pageDiscount",discountRepository.findAll());
@@ -203,6 +237,19 @@ public class AdminController {
         return "redirect:/admin/inforDiscount";
     }
     // Đặt phòng
+    @RequestMapping(value = "/admin/searchBookingDT", method = POST)
+    public String searchBookingDT (@RequestParam("checkinDate")@DateTimeFormat(pattern = "dd-MM-yyyy") Date checkinDate,
+                                   @RequestParam("checkoutDate")@DateTimeFormat(pattern = "dd-MM-yyyy") Date checkoutDate,
+                                   Model model){
+        if(checkinDate == null || checkoutDate == null) {
+            List<BookingDetailsEntity> bookingDetailsEntities = (List<BookingDetailsEntity>)bookingDetailsRepository.findAll();
+            model.addAttribute("listBookingDT", bookingDetailsEntities);
+            return "admin/pages/booking-manage/inforBookingDT";
+        }
+        List<BookingDetailsEntity> bookingDetailsEntities = (List<BookingDetailsEntity>)bookingDetailsRepository.findByCheckinDateBetween(checkinDate,checkoutDate);
+        model.addAttribute("listBookingDT", bookingDetailsEntities);
+        return "admin/pages/booking-manage/inforBookingDT";
+    }
     @RequestMapping(value = {"/admin/addBookingDT"}, method = GET)
     public String addBookingDT(Model model) {
         model.addAttribute("bookingDT",bookingDetailsRepository.findAll());
@@ -230,7 +277,9 @@ public class AdminController {
         return "admin/pages/booking-manage/addBookingDT";
     }
     @RequestMapping(value = "/admin/updateBookingDT/{id}", method = GET)
-    public String updateBookingDT(HttpSession session, Model model, BookingDetailsEntity bookingDetails, @PathVariable("id") int id) {
+    public String updateBookingDT(HttpSession session, Model model,
+                                  BookingDetailsEntity bookingDetails,
+                                  @PathVariable("id") int id) {
         BookingDetailsEntity bookingDetailsEntity = bookingDetailsRepository.findById(id);
         bookingDetails.setId(id);
         CategoryEntity categoryEntity = bookingDetailsEntity.getCategory();
@@ -249,9 +298,13 @@ public class AdminController {
                                   @ModelAttribute BookingDetailsEntity bookingDetailsEntity, HttpSession session,
                                   @ModelAttribute CategoryEntity categoryEntity,
                                   @ModelAttribute BookingEntity bookingEntity) {
-        categoryEntity.setId(categoryId);
-        bookingEntity.setId(bookingId);
-        bookingDetailsRepository.save(bookingDetailsEntity);
+        CategoryEntity category = (CategoryEntity)categoryRepository.findById(categoryId).get();
+        BookingEntity booking = (BookingEntity)bookingRepository.findById(bookingId);
+        if(category != null && booking != null){
+            bookingDetailsEntity.setCategory(category);
+            bookingDetailsEntity.setBooking(booking);
+            bookingDetailsRepository.save(bookingDetailsEntity);
+        }
         return "redirect:/admin/inforBookingDT";
     }
     @RequestMapping(value = {"/admin/inforBookingDT"}, method = GET)

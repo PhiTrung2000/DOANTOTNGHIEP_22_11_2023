@@ -37,5 +37,6 @@ public interface BookingDetailsRepository extends JpaRepository<BookingDetailsEn
     BookingDetailsEntity findById(int id);
 
     void deleteById(int id);
+    List<BookingDetailsEntity> findByCheckinDateBetween(Date checkinDate, Date checkoutDate);
 }
 

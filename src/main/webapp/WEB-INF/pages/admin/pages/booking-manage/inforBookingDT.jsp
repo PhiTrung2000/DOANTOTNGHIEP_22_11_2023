@@ -21,12 +21,18 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="/resources/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="/resources/assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="/resources/assets/images/logoSogo.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   </head>
   <body>
     <div class="container-scroller">
       <!-- partial:../../partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                      <a class="navbar-brand brand-logo" href="home"><img src="/resources/assets/images/SogoHotel.png" alt="logo" /></a>
+                      <a class="navbar-brand brand-logo-mini" href="home"><img src="/resources/assets/images/logoSogo.png" alt="logo" style="width: 30px; height: 30px;" /></a>
+                    </div>
               <div class="navbar-menu-wrapper d-flex align-items-stretch">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                   <span class="mdi mdi-menu"></span>
@@ -134,29 +140,46 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Room Search</h2>
+                        <h2 class="text-center">Thông Tin Đặt Phòng</h2>
                     </div>
                     <div class="card-body">
-                        <form action="searchResult.jsp" method="get">
-                            <div class="form-group">
-                                <label for="searchQuery">Enter your search query:</label>
-                                <input type="text" class="form-control" id="searchQuery" name="query" required>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Search</button>
+                        <form action="searchBookingDT" method="post">
+                            <div class="container">
+                                <div class="row text-center">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <label for="checkinDate" class="font-weight-bold text-black">Ngày đến</label>
+                                            <div class="field-icon-wrap">
+                                                <input type="text" id="checkinDate" name="checkinDate" class="form-control" style="background-color: white;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <label for="checkoutDate" class="font-weight-bold text-black">Ngày đi</label>
+                                            <div class="field-icon-wrap">
+                                                <input type="text" id="checkoutDate" name="checkoutDate" class="form-control" style="background-color: white;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <button type="submit" class="btn btn-primary" style="border-radius: 5px; width: 150px;">Search</button>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead class="thead-dark">
-                                <tr>
+                                <tr class="text-center">
                                     <th>ID</th>
                                     <th>Ngày đến</th>
                                     <th>Ngày đi</th>
                                     <th>Số người lớn</th>
                                     <th>Số trẻ em</th>
                                     <th>Tổng số người</th>
+                                    <th>Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -205,5 +228,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!-- endinject -->
+    <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Initialize datepickers
+                    const startDatePicker = flatpickr('#checkinDate', {
+                        dateFormat: 'd-m-Y',
+                        onClose: function(selectedDates, dateStr, instance) {
+                            // Set minDate for End Date when Start Date is selected
+                            if (selectedDates.length > 0) {
+                                const minDate = selectedDates[0];
+                                flatpickr('#checkoutDate', {
+                                    dateFormat: 'd-m-Y',
+                                    minDate: minDate,
+                                    defaultDate: minDate,
+                                });
+                            }
+                        }
+                    });
+
+                    const endDatePicker = flatpickr('#checkoutDate', {
+                        dateFormat: 'd-m-Y',
+                    });
+                });
+            </script>
   </body>
 </html>

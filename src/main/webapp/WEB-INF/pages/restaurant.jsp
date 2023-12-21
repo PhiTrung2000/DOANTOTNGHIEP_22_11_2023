@@ -5,7 +5,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sogo Hotel by Colorlib.com</title>
+    <title>Sogo Hotel</title>
+    <link rel="icon" type="image/png" href="/resources/images/icon_logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -31,7 +32,11 @@
     <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/">Sogo Hotel</a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade">
+              <a href="/">
+                  <img src="resources/images/logo_hotel_1.png" width="200" height="40">
+              </a>
+        </div>
           <div class="col-6 col-lg-8">
 
 
@@ -98,7 +103,7 @@
           </a>
     </section>
         <!-- END section -->
-        <section class="section.c">
+        <section class="section.c" id="next">
                    <div class="container">
                       <div style="margin-top: 100px" class="row    justify-content-center text-center mb-5">
                          <h1 class="mb-4">Nhà hàng</h1>
@@ -111,7 +116,7 @@
                       <div class="row">
                          <div class="col-md-18 col-lg-12" data-aos="fade-up">
                             <figure style="text-align:center" class="img-wrap">
-                            <img src="resources/images/nhahang.jpg" alt="Free website template" class="img-fluid mb-3">
+                            <img style="width: 500px; height: auto;" src="resources/images/nhahang.jpg" alt="Free website template" class="img-fluid mb-3">
                             </figure>
                          </div>
                       </div>
@@ -130,7 +135,7 @@
               <div class="row">
                  <div class="col-md-18 col-lg-12" data-aos="fade-up">
                     <figure style="text-align:center; margin-bottom: 100px" class="img-wrap">
-                    <img src="resources/images/bar.jpg" alt="Free website template" class="img-fluid mb-3">
+                    <img style="width: 500px; height: auto;" src="resources/images/bar.jpg" alt="Free website template" class="img-fluid mb-3">
                     </figure>
                  </div>
               </div>

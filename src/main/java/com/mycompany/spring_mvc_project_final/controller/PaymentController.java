@@ -249,7 +249,7 @@ public class PaymentController {
         String formattedPriceAmount = decimalFormat.format(priceAmount);
         String formattedPriceAmountPay = decimalFormat.format(priceAmountPay);
 
-        String email = "hungnguyen987x@gmail.com";
+        String email = accountEntity.getEmail();
         String emailContent = "<p>Chào <strong>[NameKH]</strong>,</p>" +
                 "<p>Chúc mừng! Đặt phòng của bạn tại Sogo Hotel đã được xác nhận thành công.</p>" +
                 "<p>Dưới đây là chi tiết đặt phòng của bạn:</p>" +

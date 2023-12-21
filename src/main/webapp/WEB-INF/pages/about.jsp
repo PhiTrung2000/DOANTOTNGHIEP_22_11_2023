@@ -6,7 +6,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sogo Hotel by Colorlib.com</title>
+    <title>Sogo Hotel</title>
+    <link rel="icon" type="image/png" href="/resources/images/icon_logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -33,7 +34,11 @@
     <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.html">Sogo Hotel</a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade">
+              <a href="/">
+                  <img src="resources/images/logo_hotel_1.png" width="200" height="40">
+              </a>
+        </div>
           <div class="col-6 col-lg-8">
 
 
@@ -86,7 +91,7 @@
             <div class="col-md-10 text-center" data-aos="fade">
             <h1 class="heading mb-3" style="font-family: 'Roboto', sans-serif;">Về Chúng Tôi</h1>
             <ul class="custom-breadcrumbs mb-4">
-              <li><a href="index.html">Trang Chủ</a></li>
+              <li><a href="/">Trang Chủ</a></li>
               <li>&bullet;</li>
               <li>Giới thiệu</li>
             </ul>
@@ -102,7 +107,7 @@
     </section>
     <!-- END section -->
 
-    <section class="py-5 bg-light">
+    <section class="py-5 bg-light" id="next">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5" data-aos="fade-up">
@@ -114,7 +119,7 @@
           <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
             <h2 class="heading">Chào Mừng!</h2>
             <p class="mb-4">Chào mừng quý khách đến với khách sạn chúng tôi! Chúng tôi rất vinh dự được đón tiếp và phục vụ quý khách trong hành trình của mình. Với cam kết đem đến trải nghiệm lưu trú độc đáo và thoải mái nhất, chúng tôi tự hào về dịch vụ chăm sóc khách hàng tận tâm và không ngừng nỗ lực để đáp ứng mọi nhu cầu của quý vị</p>
-            <p><a href="#" class="btn btn-primary text-white py-2 mr-3">Xem thêm</a> <span class="mr-3 font-family-serif"><em>or</em></span> <a href="https://vimeo.com/channels/staffpicks/93951774"  data-fancybox class="text-uppercase letter-spacing-1">Video</a></p>
+            <p><a href="https://www.youtube.com/watch?v=RNQV7kD3DI4" class="btn btn-primary text-white py-2 mr-3" data-fancybox class="text-uppercase letter-spacing-1">Video</a></p>
           </div>
 
         </div>
@@ -220,25 +225,25 @@
           <div class="col-md-12">
             <div class="home-slider major-caousel owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
               <div class="slider-item">
-                <a href="images/slider-1.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="resources/images/slider-1.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-1.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="images/slider-2.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-2.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="resources/images/slider-2.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-2.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="images/slider-3.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-3.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="resources/images/slider-3.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-3.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="images/slider-4.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-4.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="resources/images/slider-4.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-4.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="images/slider-5.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-5.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="resources/images/slider-5.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-5.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="images/slider-6.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-6.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="resources/images/slider-6.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-6.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="images/slider-7.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-7.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="resources/images/slider-7.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="resources/images/slider-7.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
             </div>
             <!-- END slider -->
