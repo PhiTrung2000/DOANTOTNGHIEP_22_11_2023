@@ -5,6 +5,7 @@ import com.mycompany.spring_mvc_project_final.repository.*;
 import com.mycompany.spring_mvc_project_final.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -35,6 +38,10 @@ public class AdminController {
     private BookingRepository bookingRepository;
     @Autowired
     private PaymentRepository paymentRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private RoleRepository roleRepository;
     // Loại phòng
     @RequestMapping(value = "/admin/searchCate", method = POST)
     public String searchCate (@RequestParam("searchCate") String searchCate, Model model){
@@ -178,8 +185,23 @@ public class AdminController {
         return "admin/pages/user-manage/updateUser";
     }
     @RequestMapping(value = "/admin/updateUser", method = RequestMethod.POST)
-    public String updateDC(@ModelAttribute AccountEntity accountEntity) {
-        accountRepository.save(accountEntity);
+    public String updateDC(@RequestParam(name = "password") String password,
+            @ModelAttribute AccountEntity accountEntity) {
+        //Mã hóa mật khẩu
+        String encryptedPassword = bCryptPasswordEncoder.encode(password);
+        accountEntity.setPassword(encryptedPassword);
+        if (accountEntity.getUserRoles() == null) {
+            accountEntity.setUserRoles(new HashSet<>());
+        }
+
+        Optional<RoleEntity> roleOptional = roleRepository.findById(Long.valueOf(2));
+        if (roleOptional.isPresent()) {
+            accountEntity.getUserRoles().add(roleOptional.get());
+            accountRepository.save(accountEntity);
+        } else {
+            // Xử lý
+        }
+//        accountRepository.save(accountEntity);
         return "redirect:/admin/inforUser";
     }
     @RequestMapping(value = "admin/deleteUser/{id}", method = GET)

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -146,13 +147,15 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Cập nhật người dùng</h4>
-                    <form action="${action}" method="post" class="forms-sample">
+                    <form action="/admin/updateUser" method="post" class="forms-sample">
                       <input type="hidden" class="form-control" id="id" name="id" value="${id}">
                       <div class="form-group">
-                        <input type="email" class="form-control" id="email" name="email" value="${account.email}" required hidden >
+                        <label for="name">Email</label>
+                        <input style="background-color:white;" type="email" class="form-control" id="email" name="email" value="${account.email}" required readonly >
                       </div>
                       <div class="form-group">
-                        <input type="text" class="form-control" id="password" name="password" value="${account.password}" required hidden >
+                        <label for="name">Password</label>
+                        <input type="text" class="form-control" id="password" name="password" value="${account.password}" required >
                       </div>
                       <div class="form-group">
                         <input type="text" class="form-control" id="address" name="address" value="${account.address}" required hidden>
@@ -161,23 +164,23 @@
                         <input type="date" class="form-control" id="dayOfBirth" name="dayOfBirth" value="${account.dayOfBirth}" required hidden>
                       </div>
                       <div class="form-group">
-                        <input type="email" class="form-control" id="gmail" name="gmail" value="${account.gmail}" required hidden>
+                        <input type="email" class="form-control" id="gmail" name="gmail" value="${account.gmail}" hidden>
                       </div>
                       <div class="form-group">
                         <label for="name">Tên Người Dùng</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Tên Người Duùng" required >
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Tên Người Dùng" value="${account.name}" required >
                       </div>
                       <div class="form-group">
                         <label for="gender">Giới Tính</label>
-                        <input type="text" class="form-control" id="gender" name="gender" placeholder="Giới Tính" required>
+                        <input type="text" class="form-control" id="gender" name="gender" placeholder="Giới Tính" value="${account.gender}" required>
                       </div>
                       <div class="form-group">
                         <label for="phone">Số Điện Thoại</label>
-                        <input type="number" class="form-control" id="phone" name="phone" placeholder="Số Điện Thoại" required>
+                        <input type="number" class="form-control" id="phone" name="phone" placeholder="Số Điện Thoại" value="${account.phone}" required>
                       </div>
                       <div class="form-group">
                         <label for="status">Tình trạng</label>
-                        <select class="form-control form-control-sm" id="status" name="status">
+                        <select style="color:black;" class="form-control form-control-sm" id="status" name="status">
                             <option>ACTIVE</option>
                             <option>BLOCK</option>
                             <option>UNACTIVE</option>

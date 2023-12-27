@@ -123,6 +123,7 @@
                         <c:if test="${not empty username}">
                             <li style="background-color: #4CAF50; color: #fff; padding: 10px; border-radius: 55px; font-size: 23px; display: inline-block;">Welcome, ${username}</li>
                             <li><a href="/user/history" target="_blank">Lịch sử đặt phòng</a></li>
+                            <li><a href="/user/changeInformation" target="_blank">Thay đổi thông tin</a></li>
                             <li><a href="/logout">Đăng xuất</a></li>
                         </c:if>
                         <c:if test="${empty username}">
